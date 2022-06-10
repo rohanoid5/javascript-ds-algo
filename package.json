@@ -1,0 +1,11 @@
+{
+  "name": "javascript-ds-algo",
+  "version": "1.0.0",
+  "description": "Collection of Data Structures and Algorithms implemented in JavaScript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rohan Dey",
+  "license": "ISC"
+}
