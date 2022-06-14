@@ -1,18 +1,18 @@
-const Heap = require("../Heap");
+const MaxHeap = require("../MaxHeap");
 
 describe("Heap", () => {
   it("should be created after initializing", () => {
-    let heap = new Heap(0);
+    let heap = new MaxHeap(0);
     expect(heap).toBeDefined();
   });
 
   it("should create a storage of N + 1 size", () => {
-    let heap = new Heap(12);
+    let heap = new MaxHeap(12);
     expect(heap.storage.length).toBe(13);
   });
 
   it("should enqueue values to storage", () => {
-    let heap = new Heap(12);
+    let heap = new MaxHeap(12);
 
     const priorities = [4, 3];
     heap.enqueue(12, priorities[0]);
@@ -23,7 +23,7 @@ describe("Heap", () => {
   });
 
   it("should maintain heap properties after enqueueing new entry", () => {
-    let heap = new Heap(19);
+    let heap = new MaxHeap(19);
 
     const priorities = [
       15, 13, 14, 9, 11, 12, 14, 8, 2, 1, 10, 8, 6, 9, 7, 4, 5,
@@ -41,7 +41,7 @@ describe("Heap", () => {
   });
 
   it("should give back the entry with highest priority after dequeue", () => {
-    let heap = new Heap(19);
+    let heap = new MaxHeap(19);
 
     const priorities = [
       16, 15, 14, 13, 11, 12, 14, 8, 12, 1, 10, 8, 6, 9, 7, 4, 5, 2, 9,

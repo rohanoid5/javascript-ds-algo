@@ -1,7 +1,7 @@
-const Heap = require("../../data-structures/heap/Heap");
+const MaxHeap = require("../../data-structures/heap/MaxHeap");
 
 const heapSort = function (arr) {
-  const heap = new Heap(arr.length);
+  const heap = new MaxHeap(arr.length);
 
   arr.forEach((el) => {
     heap.enqueue(0, el);

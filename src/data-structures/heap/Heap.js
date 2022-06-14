@@ -14,8 +14,8 @@ class Heap {
     this.swim(this.N);
   }
 
-  less(i, j) {
-    return this.storage[i].priority < this.storage[j].priority;
+  isPairInCorrectOrder(i, j) {
+    throw new Error("Must Extend Heap to Max or Min");
   }
 
   swap(i, j) {
@@ -25,7 +25,10 @@ class Heap {
   swim(child) {
     if (this.size + 1 < this.N) throw new Error("Heap size is full");
 
-    while (child > 1 && this.less(Math.floor(child / 2), child)) {
+    while (
+      child > 1 &&
+      this.isPairInCorrectOrder(Math.floor(child / 2), child)
+    ) {
       this.swap(child, Math.floor(child / 2));
       child = Math.floor(child / 2);
     }
@@ -35,11 +38,11 @@ class Heap {
     while (2 * parent <= this.N) {
       let child = 2 * parent;
 
-      if (child < this.N && this.less(child, child + 1)) {
+      if (child < this.N && this.isPairInCorrectOrder(child, child + 1)) {
         child += 1;
       }
 
-      if (this.less(child, parent)) break;
+      if (this.isPairInCorrectOrder(child, parent)) break;
 
       this.swap(parent, child);
 
