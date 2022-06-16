@@ -36,7 +36,42 @@ class BinarySearchTree {
     return false;
   }
 
-  remove() {}
+  _removeMin(node) {
+    if (node.left === null) return node.right;
+
+    node.left = this._removeMin(node.left);
+
+    return node;
+  }
+
+  remove(val) {
+    this.root = this._remove(this.root, val);
+  }
+
+  _remove(node, val) {
+    if (node === null) return null;
+
+    if (node.value < val) {
+      node.right = this._remove(node.right, val);
+    } else if (node.value > val) {
+      node.left = this._remove(node.left, val);
+    } else {
+      if (node.left === null) return node.right;
+      if (node.right === null) return node.left;
+
+      let original = node;
+      node = node.right;
+
+      while (node.left) {
+        node = node.left;
+      }
+
+      node.right = this._removeMin(original.right);
+      node.left = original.left;
+    }
+
+    return node;
+  }
 }
 
 module.exports = BinarySearchTree;

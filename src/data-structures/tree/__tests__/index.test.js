@@ -33,4 +33,17 @@ describe("Binary Search Tree", () => {
     expect(bst.contains(3)).toBe(true);
     expect(bst.contains(23)).toBe(false);
   });
+
+  it("should successfully remove any node present in the Tree", () => {
+    let bst = new BinarySearchTree();
+    let arr = [19, 14, 3, 15, 53, 26, 58];
+
+    arr.forEach((el) => {
+      bst.insert(el);
+    });
+    bst.remove(19);
+
+    expect(bst.contains(19)).toBe(false);
+    expect(bst.root.value).toBe(26);
+  });
 });
