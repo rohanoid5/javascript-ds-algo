@@ -1,6 +1,6 @@
-class Stack {
-  constructor(size = 0) {
-    this.size = size;
+class StackUsingArray {
+  constructor(capacity = 0) {
+    this.capacity = capacity;
     this.peak = -1;
     this.storage = [];
   }
@@ -10,7 +10,7 @@ class Stack {
   }
 
   push(item) {
-    if (this.size === this.getSize()) {
+    if (this.capacity === this.getSize()) {
       throw new Error("Stack size exceeded");
     }
 
@@ -31,4 +31,4 @@ class Stack {
   }
 }
 
-module.exports = Stack;
+module.exports = StackUsingArray;
