@@ -32,7 +32,7 @@ class Graph {
     this.adjacencyList[dest].add(src);
   }
 
-  addEdgeFrom(nodePairs) {
+  addEdgesFrom(nodePairs) {
     try {
       nodePairs.forEach((nodePair) => {
         let src = nodePair[0];
