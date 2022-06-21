@@ -77,5 +77,25 @@ describe("Graph", () => {
     expect(graph.adjacencyList["C"].has("D")).toBe(true);
     expect(graph.adjacencyList["C"].has("A")).toBe(true);
     expect(graph.adjacencyList["B"].has("A")).toBe(true);
+    expect(graph.adjacencyList["B"].has("D")).toBe(false);
+    expect(graph.adjacencyList["D"].has("A")).toBe(false);
+  });
+
+  it("should be able to remove edge", () => {
+    const graph = new Graph();
+
+    /* 
+      A -> B
+      A -> C
+      C -> D
+    */
+    let nodes = ["A", "B", "C", "D"];
+    graph.addNodesFrom(nodes);
+    graph.addEdge("A", "B");
+    graph.addEdge("A", "C");
+    graph.addEdge("C", "D");
+    graph.removeEdge("A", "B");
+
+    expect(graph.adjacencyList["A"].has("B")).toBe(false);
   });
 });

@@ -44,6 +44,17 @@ class Graph {
       throw new Error("Edge creation was unsuccessful");
     }
   }
+
+  removeEdge(src, dest) {
+    if (!this.nodes.has(src) || !this.nodes.has(dest)) {
+      throw new Error(
+        "Either source or destination node or both are absent in the graph"
+      );
+    }
+
+    this.adjacencyList[src].delete(dest);
+    this.adjacencyList[dest].delete(src);
+  }
 }
 
 module.exports = Graph;
