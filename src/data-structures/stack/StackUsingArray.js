@@ -1,5 +1,5 @@
 class StackUsingArray {
-  constructor(capacity = 0) {
+  constructor(capacity = 100) {
     this.capacity = capacity;
     this.peak = -1;
     this.storage = [];
@@ -7,6 +7,10 @@ class StackUsingArray {
 
   getSize() {
     return this.peak + 1;
+  }
+
+  isEmpty() {
+    return this.getSize() === 0;
   }
 
   push(item) {
@@ -19,12 +23,11 @@ class StackUsingArray {
   }
 
   pop() {
-    if (this.getSize() === 0) {
+    if (this.isEmpty()) {
       throw new Error("Stack is empty");
     }
 
-    let item = this.storage[this.peak];
-    delete this.storage[this.peak];
+    let item = this.storage.pop();
     this.peak -= 1;
 
     return item;
