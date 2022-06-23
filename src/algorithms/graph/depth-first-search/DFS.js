@@ -6,7 +6,6 @@ const depthFirstSearch = function (graph, src) {
   const stack = new StackUsingArray();
 
   stack.push(src);
-
   while (!stack.isEmpty()) {
     let v = stack.pop();
 
@@ -22,24 +21,4 @@ const depthFirstSearch = function (graph, src) {
   return nodeFrom;
 };
 
-const pathTo = function (nodeFrom, src, dest) {
-  if (!(dest in nodeFrom)) {
-    throw new Error("Destination node can't be reaced from source");
-  }
-
-  let v = dest;
-  let path = [];
-
-  while (v !== src) {
-    path.push(v);
-    v = nodeFrom[v];
-  }
-
-  path.push(src);
-  return path.reverse();
-};
-
-module.exports = {
-  depthFirstSearch,
-  pathTo,
-};
+module.exports = depthFirstSearch;
