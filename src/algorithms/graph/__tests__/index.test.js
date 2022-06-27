@@ -2,6 +2,8 @@ const Graph = require("../../../data-structures/graph/Graph");
 const depthFirstSearch = require("../depth-first-search/DFS");
 const breadthFirstSearch = require("../breadth-first-search/BFS");
 const hasCycle = require("../cycle-detection/CheckCycle");
+const topologicalSort = require("../topological-sort/TopologicalSort");
+
 const { pathTo } = require("../util");
 
 describe("Graph", () => {
@@ -101,6 +103,28 @@ describe("Graph", () => {
       ]);
 
       expect(hasCycle(graph)).toBe(false);
+    });
+  });
+
+  describe("Topological Sort", () => {
+    it("should return topologically sorted acyclic directed graph", () => {
+      /* 
+        A -> B
+        A -> C
+        B -> C
+        B -> D 
+      */
+      const graph = new Graph(true);
+      const nodes = ["A", "B", "C", "D"];
+      graph.addNodesFrom(nodes);
+      graph.addEdgesFrom([
+        ["A", "B"],
+        ["A", "C"],
+        ["B", "C"],
+        ["B", "D"],
+      ]);
+
+      expect(topologicalSort(graph)).toEqual(["A", "B", "D", "C"]);
     });
   });
 });
