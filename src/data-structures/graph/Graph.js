@@ -1,7 +1,8 @@
 class Graph {
-  constructor() {
+  constructor(isDirected = false) {
     this.nodes = new Set();
     this.adjacencyList = {};
+    this.isDirected = isDirected;
   }
 
   addNode(name) {
@@ -26,10 +27,12 @@ class Graph {
     }
     this.adjacencyList[src].add(dest);
 
-    if (!(dest in this.adjacencyList)) {
-      this.adjacencyList[dest] = new Set();
+    if (!this.isDirected) {
+      if (!(dest in this.adjacencyList)) {
+        this.adjacencyList[dest] = new Set();
+      }
+      this.adjacencyList[dest].add(src);
     }
-    this.adjacencyList[dest].add(src);
   }
 
   addEdgesFrom(nodePairs) {

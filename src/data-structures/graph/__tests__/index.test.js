@@ -98,4 +98,20 @@ describe("Graph", () => {
 
     expect(graph.adjacencyList["A"].has("B")).toBe(false);
   });
+
+  it("should be able to create directed graph", () => {
+    const graph = new Graph(true);
+
+    /* 
+      A -> B
+      C -> B
+    */
+    let nodes = ["A", "B", "C"];
+    graph.addNodesFrom(nodes);
+    graph.addEdge("A", "B");
+    graph.addEdge("B", "C");
+
+    expect(graph.adjacencyList["A"].has("B")).toBe(true);
+    expect(graph.adjacencyList["B"].has("A")).toBe(false);
+  });
 });
