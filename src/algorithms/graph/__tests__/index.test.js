@@ -3,6 +3,7 @@ const depthFirstSearch = require("../depth-first-search/DFS");
 const breadthFirstSearch = require("../breadth-first-search/BFS");
 const hasCycle = require("../cycle-detection/CheckCycle");
 const topologicalSort = require("../topological-sort/TopologicalSort");
+const transposeDirectedGraph = require("../transpose-directed-graph/TransposeGraph");
 
 const { pathTo } = require("../util");
 
@@ -126,5 +127,31 @@ describe("Graph", () => {
 
       expect(topologicalSort(graph)).toEqual(["A", "B", "D", "C"]);
     });
+  });
+
+  describe("Transpose Directed Graph", () => {
+    const graph = new Graph(true);
+    const nodes = ["A", "B", "C", "D"];
+    graph.addNodesFrom(nodes);
+
+    /*
+    A -> B
+    B -> C
+    D -> B
+    */
+    graph.addEdgesFrom([
+      ["A", "B"],
+      ["B", "C"],
+      ["D", "B"],
+    ]);
+    let transpose = transposeDirectedGraph(graph);
+    /*
+    B -> A
+    C -> B
+    B -> D
+    */
+    expect(transpose.adjacencyList["B"].has("A")).toBe(true);
+    expect(transpose.adjacencyList["B"].has("D")).toBe(true);
+    expect(transpose.adjacencyList["C"].has("B")).toBe(true);
   });
 });

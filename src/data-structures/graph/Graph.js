@@ -56,7 +56,8 @@ class Graph {
     }
 
     this.adjacencyList[src].delete(dest);
-    this.adjacencyList[dest].delete(src);
+
+    if (!this.isDirected) this.adjacencyList[dest].delete(src);
   }
 }
 
