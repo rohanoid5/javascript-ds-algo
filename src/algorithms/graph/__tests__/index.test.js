@@ -1,9 +1,12 @@
 const Graph = require("../../../data-structures/graph/Graph");
+const GraphWithAdjacencyMatrix = require("../../../data-structures/graph/GraphWithAdjacencyMatrix");
+
 const depthFirstSearch = require("../depth-first-search/DFS");
 const breadthFirstSearch = require("../breadth-first-search/BFS");
 const hasCycle = require("../cycle-detection/CheckCycle");
 const topologicalSort = require("../topological-sort/TopologicalSort");
 const transposeDirectedGraph = require("../transpose-directed-graph/TransposeGraph");
+const isGraphBipartite = require("../check-bipartite/BipartiteGraph");
 
 const { pathTo } = require("../util");
 
@@ -153,5 +156,22 @@ describe("Graph", () => {
     expect(transpose.adjacencyList["B"].has("A")).toBe(true);
     expect(transpose.adjacencyList["B"].has("D")).toBe(true);
     expect(transpose.adjacencyList["C"].has("B")).toBe(true);
+  });
+
+  describe("Bipartite Graph", () => {
+    it("should return true if a Graph is Bipartite otherwise it'll return false", () => {
+      let graph = new GraphWithAdjacencyMatrix(4, true);
+
+      graph.addEdge(0, 1);
+      graph.addEdge(0, 3);
+      graph.addEdge(1, 0);
+      graph.addEdge(1, 2);
+      graph.addEdge(2, 1);
+      graph.addEdge(2, 3);
+      graph.addEdge(3, 0);
+      graph.addEdge(3, 2);
+
+      expect(isGraphBipartite(graph.adjacencyMatrix)).toBe(true);
+    });
   });
 });
