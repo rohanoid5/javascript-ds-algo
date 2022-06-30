@@ -7,6 +7,7 @@ const hasCycle = require("../cycle-detection/CheckCycle");
 const topologicalSort = require("../topological-sort/TopologicalSort");
 const transposeDirectedGraph = require("../transpose-directed-graph/TransposeGraph");
 const isGraphBipartite = require("../check-bipartite/BipartiteGraph");
+const countPathBetweenVertices = require("../path-count/CountPath");
 
 const { pathTo } = require("../util");
 
@@ -172,6 +173,37 @@ describe("Graph", () => {
       graph.addEdge(3, 2);
 
       expect(isGraphBipartite(graph.adjacencyMatrix)).toBe(true);
+    });
+  });
+
+  describe("Count Number of Paths", () => {
+    it("should return the number of path exists between two vertices", () => {
+      let graph = new Graph(true);
+      let nodes = ["A", "B", "C", "D", "E", "F"];
+
+      /**
+       * A -> B
+       * B -> C
+       * C -> F
+       * A -> D
+       * D -> F
+       * A -> E
+       * E -> F
+       */
+
+      graph.addNodesFrom(nodes);
+      graph.addEdgesFrom([
+        ["A", "B"],
+        ["B", "C"],
+        ["C", "F"],
+        ["A", "D"],
+        ["D", "F"],
+        ["A", "E"],
+        ["E", "F"],
+      ]);
+
+      let pathCount = countPathBetweenVertices(graph, "A", "F");
+      expect(pathCount).toBe(3);
     });
   });
 });
