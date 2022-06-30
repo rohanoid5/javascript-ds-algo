@@ -5,6 +5,7 @@ const WeightedGraph = require("../../../data-structures/graph/WeightedGraph");
 const depthFirstSearch = require("../depth-first-search/DFS");
 const breadthFirstSearch = require("../breadth-first-search/BFS");
 const hasCycle = require("../cycle-detection/CheckCycle");
+const hasCycle2 = require("../cycle-detection/CheckCycle2");
 const topologicalSort = require("../topological-sort/TopologicalSort");
 const transposeDirectedGraph = require("../transpose-directed-graph/TransposeGraph");
 const isGraphBipartite = require("../check-bipartite/BipartiteGraph");
@@ -229,6 +230,30 @@ describe("Graph", () => {
         ["C", "D", 2],
       ]);
       expect(bestFirstSearch(graph, "A", "D")).toEqual(["A", "C", "D"]);
+    });
+  });
+
+  describe("Cycle Detection 2", () => {
+    it("should detect cycle in a graph built with adjacency matrix", () => {
+      const graph = new GraphWithAdjacencyMatrix(5, true);
+      /**
+       *   0 1 2 3 4
+       * 0 0 1 1 0 0
+       * 1 0 0 1 0 1
+       * 2 0 0 0 1 1
+       * 3 1 0 0 0 1
+       * 4 0 0 0 0 0
+       */
+      graph.addEdge(0, 1);
+      graph.addEdge(1, 2);
+      graph.addEdge(2, 3);
+      graph.addEdge(3, 0);
+      graph.addEdge(3, 4);
+
+      expect(hasCycle2(graph.adjacencyMatrix)).toBe(true);
+
+      graph.removeEdge(3, 0);
+      expect(hasCycle2(graph.adjacencyMatrix)).toBe(false);
     });
   });
 });
