@@ -1,5 +1,6 @@
 const Graph = require("../../../data-structures/graph/Graph");
 const GraphWithAdjacencyMatrix = require("../../../data-structures/graph/GraphWithAdjacencyMatrix");
+const WeightedGraph = require("../../../data-structures/graph/WeightedGraph");
 
 const depthFirstSearch = require("../depth-first-search/DFS");
 const breadthFirstSearch = require("../breadth-first-search/BFS");
@@ -8,6 +9,7 @@ const topologicalSort = require("../topological-sort/TopologicalSort");
 const transposeDirectedGraph = require("../transpose-directed-graph/TransposeGraph");
 const isGraphBipartite = require("../check-bipartite/BipartiteGraph");
 const countPathBetweenVertices = require("../path-count/CountPath");
+const bestFirstSearch = require("../best-first-search/BestFirstSearch");
 
 const { pathTo } = require("../util");
 
@@ -204,6 +206,29 @@ describe("Graph", () => {
 
       let pathCount = countPathBetweenVertices(graph, "A", "F");
       expect(pathCount).toBe(3);
+    });
+  });
+
+  describe("Best First Search", () => {
+    it("should find the best possible path from source to destination in a weighted graph", () => {
+      const graph = new WeightedGraph(true);
+      const nodes = ["A", "B", "C", "D"];
+      graph.addNodesFrom(nodes);
+      /**
+       * A ->(5) B
+       * B ->(3) C
+       * C ->(2) D
+       * A ->(4) C
+       * C ->(2) D
+       */
+      graph.addEdgesFrom([
+        ["A", "B", 5],
+        ["B", "C", 3],
+        ["C", "D", 2],
+        ["A", "C", 4],
+        ["C", "D", 2],
+      ]);
+      expect(bestFirstSearch(graph, "A", "D")).toEqual(["A", "C", "D"]);
     });
   });
 });
