@@ -1,4 +1,5 @@
 const MaxHeap = require("../MaxHeap");
+const MinHeap = require("../MinHeap");
 
 describe("Heap", () => {
   it("should be created after initializing", () => {
@@ -53,5 +54,20 @@ describe("Heap", () => {
     });
 
     expect(heap.dequeue().priority).toBe(priorities.sort((a, b) => b - a)[0]);
+  });
+
+  it("should give back the entry with lowest priority after dequeue", () => {
+    let heap = new MinHeap(19);
+
+    const priorities = [
+      16, 15, 14, 13, 11, 12, 14, 8, 12, 1, 10, 8, 6, 9, 7, 4, 5, 2, 9,
+    ];
+    const value = 1;
+
+    priorities.forEach((p) => {
+      heap.enqueue(value, p);
+    });
+
+    expect(heap.dequeue().priority).toBe(priorities.sort((a, b) => a - b)[0]);
   });
 });
