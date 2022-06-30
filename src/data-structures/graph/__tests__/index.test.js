@@ -1,5 +1,6 @@
 const Graph = require("../Graph");
 const GraphWithAdjacencyMatrix = require("../GraphWithAdjacencyMatrix");
+const WeightedGraph = require("../WeightedGraph");
 
 describe("Graph", () => {
   it("should create a new instance of Graph", () => {
@@ -149,5 +150,31 @@ describe("Graph with Adjacency Matrix", () => {
     expect(graph.adjacencyMatrix[0][3]).toBe(0);
     expect(graph.adjacencyMatrix[1][3]).toBe(0);
     expect(graph.adjacencyMatrix[5][3]).toBe(0);
+  });
+});
+
+describe("Weighted Graph", () => {
+  it("should create a graph with weighted edges", () => {
+    const graph = new WeightedGraph(false);
+    const nodes = ["A", "B", "C", "D", "E"];
+    /**
+     * A ->(5) B
+     * B ->(3) C
+     * C ->(2) D
+     * B ->(6) E
+     */
+
+    graph.addNodesFrom(nodes);
+    graph.addEdgesFrom([
+      ["A", "B", 5],
+      ["B", "C", 3],
+      ["C", "D", 2],
+      ["B", "E", 6],
+    ]);
+
+    expect(graph.weights["A,B"]).toBe(5);
+    expect(graph.weights["B,C"]).toBe(3);
+    expect(graph.weights["C,D"]).toBe(2);
+    expect(graph.weights["B,E"]).toBe(6);
   });
 });
