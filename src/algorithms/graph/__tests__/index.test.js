@@ -13,6 +13,7 @@ const isGraphBipartite = require("../check-bipartite/BipartiteGraph");
 const countPathBetweenVertices = require("../path-count/CountPath");
 const bestFirstSearch = require("../best-first-search/BestFirstSearch");
 const hasNegativeCycle = require("../bellman-ford/CheckNegativeCycle");
+const countCyclesInUndirectedGraph = require("../count-cycle/CountCycleUndirected");
 
 const { pathTo } = require("../util");
 
@@ -276,6 +277,29 @@ describe("Graph", () => {
       graph.addEdge(3, 0, -1);
 
       expect(hasNegativeCycle(graph)).toBe(true);
+    });
+  });
+
+  describe("Count Cycles of N-length in Undirected Graph", () => {
+    it("should count number of cycles of N-length in undirected Graph", () => {
+      const graph = new GraphWithAdjacencyMatrix(5);
+      /**
+       *   0 1 2 3 4
+       * 0 0 1 0 1 0
+       * 1 1 0 1 0 1
+       * 2 0 1 0 1 0
+       * 3 1 0 1 0 1
+       * 4 0 1 0 1 0
+       */
+
+      graph.addEdge(0, 1);
+      graph.addEdge(0, 3);
+      graph.addEdge(1, 2);
+      graph.addEdge(1, 4);
+      graph.addEdge(2, 3);
+      graph.addEdge(3, 4);
+
+      expect(countCyclesInUndirectedGraph(graph, 4)).toBe(3);
     });
   });
 });
