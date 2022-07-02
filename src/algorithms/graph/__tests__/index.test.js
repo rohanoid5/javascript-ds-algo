@@ -13,6 +13,7 @@ const isGraphBipartite = require("../check-bipartite/BipartiteGraph");
 const countPathBetweenVertices = require("../path-count/CountPath");
 const bestFirstSearch = require("../best-first-search/BestFirstSearch");
 const hasNegativeCycle = require("../bellman-ford/CheckNegativeCycle");
+const hasNegativeCycle2 = require("../floyd-warshall/CheckNegativeCycle2");
 const countCyclesInUndirectedGraph = require("../count-cycle/CountCycleUndirected");
 
 const { pathTo } = require("../util");
@@ -114,6 +115,30 @@ describe("Graph", () => {
       ]);
 
       expect(hasCycle(graph)).toBe(false);
+    });
+  });
+
+  describe("Cycle Detection 2", () => {
+    it("should detect cycle in a graph built with adjacency matrix", () => {
+      const graph = new GraphWithAdjacencyMatrix(5, true);
+      /**
+       *   0 1 2 3 4
+       * 0 0 1 1 0 0
+       * 1 0 0 1 0 1
+       * 2 0 0 0 1 1
+       * 3 1 0 0 0 1
+       * 4 0 0 0 0 0
+       */
+      graph.addEdge(0, 1);
+      graph.addEdge(1, 2);
+      graph.addEdge(2, 3);
+      graph.addEdge(3, 0);
+      graph.addEdge(3, 4);
+
+      expect(hasCycle2(graph.adjacencyMatrix)).toBe(true);
+
+      graph.removeEdge(3, 0);
+      expect(hasCycle2(graph.adjacencyMatrix)).toBe(false);
     });
   });
 
@@ -236,30 +261,6 @@ describe("Graph", () => {
     });
   });
 
-  describe("Cycle Detection 2", () => {
-    it("should detect cycle in a graph built with adjacency matrix", () => {
-      const graph = new GraphWithAdjacencyMatrix(5, true);
-      /**
-       *   0 1 2 3 4
-       * 0 0 1 1 0 0
-       * 1 0 0 1 0 1
-       * 2 0 0 0 1 1
-       * 3 1 0 0 0 1
-       * 4 0 0 0 0 0
-       */
-      graph.addEdge(0, 1);
-      graph.addEdge(1, 2);
-      graph.addEdge(2, 3);
-      graph.addEdge(3, 0);
-      graph.addEdge(3, 4);
-
-      expect(hasCycle2(graph.adjacencyMatrix)).toBe(true);
-
-      graph.removeEdge(3, 0);
-      expect(hasCycle2(graph.adjacencyMatrix)).toBe(false);
-    });
-  });
-
   describe("Bellman Ford", () => {
     it("should detect negative cycle in weighted graph", () => {
       const graph = new WeightedGraphWithAdjacencyMatrix(4, true);
@@ -277,6 +278,26 @@ describe("Graph", () => {
       graph.addEdge(3, 0, -1);
 
       expect(hasNegativeCycle(graph)).toBe(true);
+    });
+  });
+
+  describe("Floyd Warshall", () => {
+    it("should detect negative cycle in weighted graph", () => {
+      const graph = new WeightedGraphWithAdjacencyMatrix(4, true);
+      /**
+       *   0  1  2  3
+       * 0 0  1  0  0
+       * 1 0  0 -1  0
+       * 2 0  0  0 -1
+       * 3 -1 0  0  0
+       */
+
+      graph.addEdge(0, 1, 1);
+      graph.addEdge(1, 2, -1);
+      graph.addEdge(2, 3, -1);
+      graph.addEdge(3, 0, -1);
+
+      expect(hasNegativeCycle2(graph)).toBe(true);
     });
   });
 
