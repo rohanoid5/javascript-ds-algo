@@ -1,6 +1,7 @@
 const Graph = require("../../../data-structures/graph/Graph");
 const GraphWithAdjacencyMatrix = require("../../../data-structures/graph/GraphWithAdjacencyMatrix");
 const WeightedGraph = require("../../../data-structures/graph/WeightedGraph");
+const WeightedGraphWithAdjacencyMatrix = require("../../../data-structures/graph/WeightedGraphWithAdjacencyMatrix");
 
 const depthFirstSearch = require("../depth-first-search/DFS");
 const breadthFirstSearch = require("../breadth-first-search/BFS");
@@ -11,6 +12,7 @@ const transposeDirectedGraph = require("../transpose-directed-graph/TransposeGra
 const isGraphBipartite = require("../check-bipartite/BipartiteGraph");
 const countPathBetweenVertices = require("../path-count/CountPath");
 const bestFirstSearch = require("../best-first-search/BestFirstSearch");
+const hasNegativeCycle = require("../bellman-ford/CheckNegativeCycle");
 
 const { pathTo } = require("../util");
 
@@ -254,6 +256,26 @@ describe("Graph", () => {
 
       graph.removeEdge(3, 0);
       expect(hasCycle2(graph.adjacencyMatrix)).toBe(false);
+    });
+  });
+
+  describe("Bellman Ford", () => {
+    it("should detect negative cycle in weighted graph", () => {
+      const graph = new WeightedGraphWithAdjacencyMatrix(4, true);
+      /**
+       *   0  1  2  3
+       * 0 0  1  0  0
+       * 1 0  0 -1  0
+       * 2 0  0  0 -1
+       * 3 -1 0  0  0
+       */
+
+      graph.addEdge(0, 1, 1);
+      graph.addEdge(1, 2, -1);
+      graph.addEdge(2, 3, -1);
+      graph.addEdge(3, 0, -1);
+
+      expect(hasNegativeCycle(graph)).toBe(true);
     });
   });
 });
