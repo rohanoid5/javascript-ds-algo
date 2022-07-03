@@ -27,8 +27,6 @@ const hasNegativeCycle2 = function (graph) {
     }
   }
 
-  console.log(dist);
-
   for (let i = 0; i < V; i++) {
     if (dist[i][i] < 0) return true;
   }
