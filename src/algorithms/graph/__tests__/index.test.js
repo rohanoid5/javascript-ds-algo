@@ -16,6 +16,7 @@ const bestFirstSearch = require("../best-first-search/BestFirstSearch");
 const hasNegativeCycle = require("../bellman-ford/CheckNegativeCycle");
 const hasNegativeCycle2 = require("../floyd-warshall/CheckNegativeCycle2");
 const countCyclesInUndirectedGraph = require("../count-cycle/CountCycleUndirected");
+const cloneDAG = require("../clone-dag/CloneDirectedAcyclicGraph");
 
 const { pathTo } = require("../util");
 
@@ -346,6 +347,39 @@ describe("Graph", () => {
       graph.addEdge(3, 4);
 
       expect(countCyclesInUndirectedGraph(graph, 4)).toBe(3);
+    });
+  });
+
+  describe("Clone DAG", () => {
+    it("should create a clone of a Directed Acyclic Graph", () => {
+      const graph = new GraphWithAdjacencyMatrix(6, true);
+      /*
+        0 1 2 3 4 5
+      0 0 1 1 0 0 0
+      1 1 0 1 0 1 1
+      2 0 0 0 1 1 0
+      3 0 0 0 0 1 1
+      4 0 1 0 0 0 0
+      5 0 0 0 0 0 0
+      */
+      graph.addEdge(0, 1);
+      graph.addEdge(0, 2);
+      graph.addEdge(1, 0);
+      graph.addEdge(1, 2);
+      graph.addEdge(1, 4);
+      graph.addEdge(1, 5);
+      graph.addEdge(2, 3);
+      graph.addEdge(2, 4);
+      graph.addEdge(3, 4);
+      graph.addEdge(3, 5);
+      graph.addEdge(4, 1);
+
+      const clone = cloneDAG(graph);
+      expect(clone.adjacencyMatrix).toEqual(graph.adjacencyMatrix);
+
+      clone.removeEdge(4, 1);
+      expect(clone.adjacencyMatrix[4][1]).toBe(0);
+      expect(graph.adjacencyMatrix[4][1]).toBe(1);
     });
   });
 });
