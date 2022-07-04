@@ -22,6 +22,7 @@ const singleSourceShortestPath = require("../djikstra/SingleSourceShortestPath")
 const getShortestPathForDAG = require("../dag-shortest-path/ShortestPathDAG");
 
 const { pathTo } = require("../util");
+const findShortestPathInUnweightedGraph = require("../unweighted-shortest-path/ShortestPathUnweighted");
 
 describe("Graph", () => {
   describe("Depth First Search", () => {
@@ -488,6 +489,26 @@ describe("Graph", () => {
       graph2.addEdge(4, 5, -2);
       expect(getShortestPathForDAG(graph2, 1)).toEqual([
         9007199254740991, 0, 2, 6, 5, 3,
+      ]);
+    });
+  });
+
+  describe("Shortest Path of Unweighted Graph", () => {
+    it("should return an array of distance from source vertex to all vertices", () => {
+      const graph = new GraphWithAdjacencyMatrix(8);
+      graph.addEdge(0, 1);
+      graph.addEdge(0, 3);
+      graph.addEdge(1, 2);
+      graph.addEdge(3, 4);
+      graph.addEdge(3, 7);
+      graph.addEdge(4, 5);
+      graph.addEdge(4, 6);
+      graph.addEdge(4, 7);
+      graph.addEdge(5, 6);
+      graph.addEdge(6, 7);
+
+      expect(findShortestPathInUnweightedGraph(graph, 0)).toEqual([
+        0, 1, 2, 1, 2, 3, 3, 2,
       ]);
     });
   });
