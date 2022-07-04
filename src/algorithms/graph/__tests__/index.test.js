@@ -9,6 +9,7 @@ const hasCycle = require("../cycle-detection/CheckCycle");
 const hasCycle2 = require("../cycle-detection/CheckCycle2");
 const hasCycle3 = require("../cycle-detection/CheckCycle3");
 const topologicalSort = require("../topological-sort/TopologicalSort");
+const topologicalSort2 = require("../topological-sort/TopologicalSort2");
 const transposeDirectedGraph = require("../transpose-directed-graph/TransposeGraph");
 const isGraphBipartite = require("../check-bipartite/BipartiteGraph");
 const countPathBetweenVertices = require("../path-count/CountPath");
@@ -18,6 +19,7 @@ const hasNegativeCycle2 = require("../floyd-warshall/CheckNegativeCycle2");
 const countCyclesInUndirectedGraph = require("../count-cycle/CountCycleUndirected");
 const cloneDAG = require("../clone-dag/CloneDirectedAcyclicGraph");
 const singleSourceShortestPath = require("../djikstra/SingleSourceShortestPath");
+const getShortestPathForDAG = require("../dag-shortest-path/ShortestPathDAG");
 
 const { pathTo } = require("../util");
 
@@ -188,6 +190,34 @@ describe("Graph", () => {
       ]);
 
       expect(topologicalSort(graph)).toEqual(["A", "B", "D", "C"]);
+    });
+  });
+
+  describe("Topological Sort 2", () => {
+    it("should return topologically sorted acyclic directed graph(adjacency matrix)", () => {
+      const graph = new WeightedGraphWithAdjacencyMatrix(6, true);
+      /**
+       *   r s t x y  z
+       *   0 1 2 3 4  5
+       * 0 0 5 3 0 0  0
+       * 1 0 0 2 6 0  0
+       * 2 0 0 0 7 4  2
+       * 3 0 0 0 0 -1 1
+       * 4 0 0 0 0 0 -2
+       * 5 0 0 0 0 0 0
+       */
+      graph.addEdge(0, 1, 5);
+      graph.addEdge(0, 2, 3);
+      graph.addEdge(1, 2, 2);
+      graph.addEdge(1, 3, 6);
+      graph.addEdge(2, 3, 7);
+      graph.addEdge(2, 4, 4);
+      graph.addEdge(2, 5, 2);
+      graph.addEdge(3, 4, -1);
+      graph.addEdge(3, 5, 1);
+      graph.addEdge(4, 5, -2);
+
+      expect(topologicalSort2(graph)).toEqual([0, 1, 2, 3, 4, 5]);
     });
   });
 
@@ -417,6 +447,47 @@ describe("Graph", () => {
 
       expect(singleSourceShortestPath(graph, 0)).toEqual([
         0, 4, 12, 19, 21, 11, 9, 8, 14,
+      ]);
+    });
+  });
+
+  describe("Shortest Path of DAG", () => {
+    it("should return shortest paths from source of a DAG", () => {
+      const graph = new WeightedGraphWithAdjacencyMatrix(6, true);
+      /**
+       *   r s t x y  z
+       *   0 1 2 3 4  5
+       * 0 0 5 3 0 0  0
+       * 1 0 0 2 6 0  0
+       * 2 0 0 0 7 4  2
+       * 3 0 0 0 0 -1 1
+       * 4 0 0 0 0 0 -2
+       * 5 0 0 0 0 0 0
+       */
+      graph.addEdge(0, 1, 5);
+      graph.addEdge(0, 2, 3);
+      graph.addEdge(1, 2, 2);
+      graph.addEdge(1, 3, 6);
+      graph.addEdge(2, 3, 7);
+      graph.addEdge(2, 4, 4);
+      graph.addEdge(2, 5, 2);
+      graph.addEdge(3, 4, -1);
+      graph.addEdge(3, 5, 1);
+      graph.addEdge(4, 5, -2);
+      expect(getShortestPathForDAG(graph, 0)).toEqual([0, 5, 3, 10, 7, 5]);
+
+      const graph2 = new WeightedGraphWithAdjacencyMatrix(6, true);
+      graph2.addEdge(0, 1, 5);
+      graph2.addEdge(0, 2, 3);
+      graph2.addEdge(1, 3, 6);
+      graph2.addEdge(1, 2, 2);
+      graph2.addEdge(2, 4, 4);
+      graph2.addEdge(2, 5, 2);
+      graph2.addEdge(2, 3, 7);
+      graph2.addEdge(3, 4, -1);
+      graph2.addEdge(4, 5, -2);
+      expect(getShortestPathForDAG(graph2, 1)).toEqual([
+        9007199254740991, 0, 2, 6, 5, 3,
       ]);
     });
   });
