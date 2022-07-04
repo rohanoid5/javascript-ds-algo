@@ -20,9 +20,10 @@ const countCyclesInUndirectedGraph = require("../count-cycle/CountCycleUndirecte
 const cloneDAG = require("../clone-dag/CloneDirectedAcyclicGraph");
 const singleSourceShortestPath = require("../djikstra/SingleSourceShortestPath");
 const getShortestPathForDAG = require("../dag-shortest-path/ShortestPathDAG");
+const findShortestPathInUnweightedGraph = require("../unweighted-shortest-path/ShortestPathUnweighted");
+const findMinWeightCycleInUndirectedGraph = require("../minimum-weight-cycle/MinimumWeightCycle");
 
 const { pathTo } = require("../util");
-const findShortestPathInUnweightedGraph = require("../unweighted-shortest-path/ShortestPathUnweighted");
 
 describe("Graph", () => {
   describe("Depth First Search", () => {
@@ -510,6 +511,28 @@ describe("Graph", () => {
       expect(findShortestPathInUnweightedGraph(graph, 0)).toEqual([
         0, 1, 2, 1, 2, 3, 3, 2,
       ]);
+    });
+  });
+
+  describe("Minimum Weight Cycle in Undirected Graph", () => {
+    it("should return the minimum weight cycle in Undirected Graph", () => {
+      const graph = new WeightedGraphWithAdjacencyMatrix(9);
+      graph.addEdge(0, 1, 4);
+      graph.addEdge(0, 7, 8);
+      graph.addEdge(1, 2, 8);
+      graph.addEdge(1, 7, 11);
+      graph.addEdge(2, 3, 7);
+      graph.addEdge(2, 8, 2);
+      graph.addEdge(2, 5, 4);
+      graph.addEdge(3, 4, 9);
+      graph.addEdge(3, 5, 14);
+      graph.addEdge(4, 5, 10);
+      graph.addEdge(5, 6, 2);
+      graph.addEdge(6, 7, 1);
+      graph.addEdge(6, 8, 6);
+      graph.addEdge(7, 8, 7);
+
+      expect(findMinWeightCycleInUndirectedGraph(graph)).toBe(14);
     });
   });
 });
