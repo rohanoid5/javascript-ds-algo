@@ -22,6 +22,7 @@ const singleSourceShortestPath = require("../djikstra/SingleSourceShortestPath")
 const getShortestPathForDAG = require("../dag-shortest-path/ShortestPathDAG");
 const findShortestPathInUnweightedGraph = require("../unweighted-shortest-path/ShortestPathUnweighted");
 const findMinWeightCycleInUndirectedGraph = require("../minimum-weight-cycle/MinimumWeightCycle");
+const maximumEdgeAdditionInDAG = require("../maximum-edge-dag/MaximumEdgeInDAG");
 
 const { pathTo } = require("../util");
 
@@ -533,6 +534,30 @@ describe("Graph", () => {
       graph.addEdge(7, 8, 7);
 
       expect(findMinWeightCycleInUndirectedGraph(graph)).toBe(14);
+    });
+  });
+
+  describe("Maximum Edge Addition in DAG", () => {
+    it("should return an array of pairs which can be added in a DAG", () => {
+      const graph = new GraphWithAdjacencyMatrix(6, true);
+      graph.addEdge(5, 2);
+      graph.addEdge(5, 0);
+      graph.addEdge(4, 0);
+      graph.addEdge(4, 1);
+      graph.addEdge(2, 3);
+      graph.addEdge(3, 1);
+
+      expect(maximumEdgeAdditionInDAG(graph)).toEqual([
+        [5, 4],
+        [5, 3],
+        [5, 1],
+        [4, 2],
+        [4, 3],
+        [2, 1],
+        [2, 0],
+        [3, 0],
+        [1, 0],
+      ]);
     });
   });
 });
