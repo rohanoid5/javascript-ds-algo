@@ -1,6 +1,7 @@
 const findUglyNumber = require("../ugly-numbers/UglyNumbers");
 const getBellNumber = require("../bell-numbers/BellNumbers");
 const countCoinChange = require("../coin-change/CoinChange");
+const isSubsetSum = require("../subset-sum/SubsetSum");
 
 describe("Ugly Numbers", () => {
   it("should return the nth ugly number from the sequence", () => {
@@ -23,5 +24,12 @@ describe("Coin Change", () => {
   it("should return the number of possible set given a number and a set of coins", () => {
     expect(countCoinChange(4, [1, 2, 3])).toBe(4);
     expect(countCoinChange(10, [2, 5, 3, 6])).toBe(5);
+  });
+});
+
+describe("Subset Sum", () => {
+  it("should return true/false if a number can be summed up using a subset of numbers", () => {
+    expect(isSubsetSum(9, [3, 34, 4, 12, 5, 2])).toBe(true);
+    expect(isSubsetSum(5, [3, 4, 2, 1])).toBe(true);
   });
 });
