@@ -23,6 +23,7 @@ const getShortestPathForDAG = require("../dag-shortest-path/ShortestPathDAG");
 const findShortestPathInUnweightedGraph = require("../unweighted-shortest-path/ShortestPathUnweighted");
 const findMinWeightCycleInUndirectedGraph = require("../minimum-weight-cycle/MinimumWeightCycle");
 const maximumEdgeAdditionInDAG = require("../maximum-edge-dag/MaximumEdgeInDAG");
+const getLongestPathForDAG = require("../dag-longest-path/LongestPathDAG");
 
 const { pathTo } = require("../util");
 
@@ -557,6 +558,26 @@ describe("Graph", () => {
         [2, 0],
         [3, 0],
         [1, 0],
+      ]);
+    });
+  });
+
+  describe("Longest Path from source in DAG", () => {
+    it("should return an array of longest distances from source", () => {
+      const graph = new WeightedGraphWithAdjacencyMatrix(6, true);
+      graph.addEdge(0, 1, 5);
+      graph.addEdge(0, 2, 3);
+      graph.addEdge(1, 3, 6);
+      graph.addEdge(1, 2, 2);
+      graph.addEdge(2, 4, 4);
+      graph.addEdge(2, 5, 2);
+      graph.addEdge(2, 3, 7);
+      graph.addEdge(3, 5, 1);
+      graph.addEdge(3, 4, -1);
+      graph.addEdge(4, 5, -2);
+
+      expect(getLongestPathForDAG(graph, 1)).toEqual([
+        -9007199254740991, 0, 2, 9, 8, 10,
       ]);
     });
   });
