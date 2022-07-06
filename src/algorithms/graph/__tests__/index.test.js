@@ -24,6 +24,7 @@ const findShortestPathInUnweightedGraph = require("../unweighted-shortest-path/S
 const findMinWeightCycleInUndirectedGraph = require("../minimum-weight-cycle/MinimumWeightCycle");
 const maximumEdgeAdditionInDAG = require("../maximum-edge-dag/MaximumEdgeInDAG");
 const getLongestPathForDAG = require("../dag-longest-path/LongestPathDAG");
+const printAlienDictionary = require("../alien-dictionary/AlienDictionary");
 
 const { pathTo } = require("../util");
 
@@ -578,6 +579,16 @@ describe("Graph", () => {
 
       expect(getLongestPathForDAG(graph, 1)).toEqual([
         -9007199254740991, 0, 2, 9, 8, 10,
+      ]);
+    });
+  });
+
+  describe("Alien Dictionary", () => {
+    it("should return sorted dictionary words", () => {
+      expect(printAlienDictionary(["caa", "aaa", "aab"], 3)).toEqual([
+        "c",
+        "a",
+        "b",
       ]);
     });
   });

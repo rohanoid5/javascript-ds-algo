@@ -4,7 +4,7 @@ const WeightedGraphWithAdjacencyMatrix = require("../../../data-structures/graph
 /**
  * Given a Weighted Graph find the nodes Topologically Sorted
  * @param {WeightedGraphWithAdjacencyMatrix | GraphWithAdjacencyMatrix} graph
- * @returns {Array<number>}
+ * @return {number[]}
  */
 const topologicalSort2 = function (graph) {
   const marked = {};
