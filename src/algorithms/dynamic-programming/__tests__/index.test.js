@@ -2,6 +2,8 @@ const findUglyNumber = require("../ugly-numbers/UglyNumbers");
 const getBellNumber = require("../bell-numbers/BellNumbers");
 const countCoinChange = require("../coin-change/CoinChange");
 const isSubsetSum = require("../subset-sum/SubsetSum");
+const maxValRodCutting = require("../rod-cutting/RodCutting");
+const LCS = require("../longest-common-subsequence/LCS");
 
 describe("Ugly Numbers", () => {
   it("should return the nth ugly number from the sequence", () => {
@@ -31,5 +33,20 @@ describe("Subset Sum", () => {
   it("should return true/false if a number can be summed up using a subset of numbers", () => {
     expect(isSubsetSum(9, [3, 34, 4, 12, 5, 2])).toBe(true);
     expect(isSubsetSum(5, [3, 4, 2, 1])).toBe(true);
+  });
+});
+
+describe("Rod Cutting", () => {
+  it("should return the max value", () => {
+    expect(maxValRodCutting(8, [1, 5, 8, 9, 10, 17, 17, 20])).toBe(22);
+    expect(maxValRodCutting(8, [3, 5, 8, 9, 10, 17, 17, 20])).toBe(24);
+  });
+});
+
+describe("Longest Common Subsequence", () => {
+  it("should return the length of LCS of two strings", () => {
+    expect(LCS("AGGTAB", "GXTXAYB")).toBe(4);
+    expect(LCS("ABCDGH", "AEDFHR")).toBe(3);
+    expect(LCS("AXYT", "AYZX")).toBe(2);
   });
 });
