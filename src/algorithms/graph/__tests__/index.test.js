@@ -25,6 +25,7 @@ const findMinWeightCycleInUndirectedGraph = require("../minimum-weight-cycle/Min
 const maximumEdgeAdditionInDAG = require("../maximum-edge-dag/MaximumEdgeInDAG");
 const getLongestPathForDAG = require("../dag-longest-path/LongestPathDAG");
 const printAlienDictionary = require("../alien-dictionary/AlienDictionary");
+const scheduleTasks = require("../task-scheduling/TaskScheduling");
 
 const { pathTo } = require("../util");
 
@@ -590,6 +591,32 @@ describe("Graph", () => {
         "a",
         "b",
       ]);
+    });
+  });
+
+  describe("Task Scheduling", () => {
+    it("should return order of task execution", () => {
+      expect(
+        scheduleTasks(
+          [
+            [1, 0],
+            [2, 0],
+            [3, 1],
+            [3, 2],
+          ],
+          4
+        )
+      ).toEqual([0, 2, 1, 3]);
+      expect(
+        scheduleTasks(
+          [
+            [1, 0],
+            [2, 1],
+            [3, 2],
+          ],
+          4
+        )
+      ).toEqual([0, 1, 2, 3]);
     });
   });
 });
