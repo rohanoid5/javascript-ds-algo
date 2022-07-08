@@ -4,6 +4,8 @@ const countCoinChange = require("../coin-change/CoinChange");
 const isSubsetSum = require("../subset-sum/SubsetSum");
 const maxValRodCutting = require("../rod-cutting/RodCutting");
 const LCS = require("../longest-common-subsequence/LCS");
+const minCostPath = require("../min-cost-path/MinCostPath");
+const LCS2 = require("../longest-common-substring/LCS2");
 
 describe("Ugly Numbers", () => {
   it("should return the nth ugly number from the sequence", () => {
@@ -48,5 +50,23 @@ describe("Longest Common Subsequence", () => {
     expect(LCS("AGGTAB", "GXTXAYB")).toBe(4);
     expect(LCS("ABCDGH", "AEDFHR")).toBe(3);
     expect(LCS("AXYT", "AYZX")).toBe(2);
+  });
+});
+
+describe("Min Cost Path", () => {
+  it("should return the minimum cost path between origin to another co-ordinate", () => {
+    expect(
+      minCostPath([
+        [1, 2, 3],
+        [4, 8, 2],
+        [1, 5, 3],
+      ])
+    ).toBe(8);
+  });
+});
+
+describe("Longest Common Substring", () => {
+  it("should return longest common substring between 2 strings", () => {
+    expect(LCS2("GeeksforGeeks", "GeeksQuiz")).toBe(5);
   });
 });
