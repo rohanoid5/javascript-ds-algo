@@ -7,7 +7,7 @@ const dfs = function (graph, u, marked, inStack) {
       if (!(v in marked)) {
         if (dfs(graph, v, marked, inStack)) return true;
       } else {
-        if (v in marked && marked[v]) return true;
+        if (v in inStack && inStack[v]) return true;
       }
     }
   }

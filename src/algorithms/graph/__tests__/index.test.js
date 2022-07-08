@@ -26,9 +26,10 @@ const maximumEdgeAdditionInDAG = require("../maximum-edge-dag/MaximumEdgeInDAG")
 const getLongestPathForDAG = require("../dag-longest-path/LongestPathDAG");
 const printAlienDictionary = require("../alien-dictionary/AlienDictionary");
 const scheduleTasks = require("../task-scheduling/TaskScheduling");
+const getMinimumSpanningTree2 = require("../kruskals-mst/MinimumSpanningTree2");
+const getMinimumSpanningTree = require("../prims-mst/MinimumSpanningTree");
 
 const { pathTo } = require("../util");
-const getMinimumSpanningTree = require("../prims-mst/MinimumSpanningTree");
 
 describe("Graph", () => {
   describe("Depth First Search", () => {
@@ -652,6 +653,33 @@ describe("Graph", () => {
         2: "1",
         3: "0",
         4: "1",
+      });
+    });
+  });
+
+  describe("Kruskal's MST", () => {
+    it("should return the minimum spanning tree", () => {
+      const graph = new WeightedGraphWithAdjacencyMatrix(5, true);
+      [
+        [0, 2, 0, 6, 0],
+        [2, 0, 3, 8, 5],
+        [0, 3, 0, 0, 7],
+        [6, 8, 0, 0, 9],
+        [0, 5, 7, 9, 0],
+      ];
+      graph.addEdge(0, 1, 2);
+      graph.addEdge(0, 3, 6);
+      graph.addEdge(1, 2, 3);
+      graph.addEdge(1, 3, 8);
+      graph.addEdge(1, 4, 5);
+      graph.addEdge(2, 4, 7);
+      graph.addEdge(3, 4, 9);
+
+      expect(getMinimumSpanningTree2(graph).weights).toEqual({
+        "0,1": 2,
+        "1,2": 3,
+        "1,4": 5,
+        "0,3": 6,
       });
     });
   });
