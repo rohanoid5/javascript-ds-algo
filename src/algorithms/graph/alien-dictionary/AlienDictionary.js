@@ -31,6 +31,7 @@ const printAlienDictionary = function (words, alpha) {
           word1.charCodeAt(j) - "a".charCodeAt(0),
           word2.charCodeAt(j) - "a".charCodeAt(0)
         );
+        break;
       }
     }
   }
