@@ -593,6 +593,9 @@ describe("Graph", () => {
         "a",
         "b",
       ]);
+      expect(
+        printAlienDictionary(["ywx", "wz", "xww", "xz", "zyy", "zwz"], 3)
+      ).toEqual(["y", "w", "x", "z"]);
     });
   });
 

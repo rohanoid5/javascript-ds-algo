@@ -19,7 +19,12 @@ const topologicalSort2 = require("../topological-sort/TopologicalSort2");
  * @return {Array}
  */
 const printAlienDictionary = function (words, alpha) {
-  const graph = new WeightedGraphWithAdjacencyMatrix(alpha, true);
+  const uniqueWords = new Set(words.join("").split(""));
+  const uniqueWordCount = uniqueWords.size;
+  const graph = new WeightedGraphWithAdjacencyMatrix(uniqueWordCount, true);
+  const converter = Array.from(uniqueWords).sort(
+    (a, b) => a.charCodeAt(0) - b.charCodeAt(0)
+  )[0];
 
   for (let i = 0; i < words.length - 1; i++) {
     let word1 = words[i];
@@ -28,8 +33,8 @@ const printAlienDictionary = function (words, alpha) {
     for (let j = 0; j < Math.min(word1.length, word2.length); j++) {
       if (word1[j] !== word2[j]) {
         graph.addEdge(
-          word1.charCodeAt(j) - "a".charCodeAt(0),
-          word2.charCodeAt(j) - "a".charCodeAt(0)
+          word1.charCodeAt(j) - converter.charCodeAt(0),
+          word2.charCodeAt(j) - converter.charCodeAt(0)
         );
         break;
       }
@@ -37,7 +42,7 @@ const printAlienDictionary = function (words, alpha) {
   }
 
   return topologicalSort2(graph).map((v) =>
-    String.fromCharCode(v + "a".charCodeAt(0))
+    String.fromCharCode(v + converter.charCodeAt(0))
   );
 };
 
