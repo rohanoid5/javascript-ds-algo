@@ -8,6 +8,7 @@ const minCostPath = require("../min-cost-path/MinCostPath");
 const LCS2 = require("../longest-common-substring/LCS2");
 const countStairs = require("../count-stairs/CountStairs");
 const knapsack = require("../knapsack-0-1/KnapsackDP");
+const eggDropping = require("../egg-dropping/EggDropping");
 
 describe("Ugly Numbers", () => {
   it("should return the nth ugly number from the sequence", () => {
@@ -83,5 +84,12 @@ describe("Count Stairs", () => {
 describe("0-1 Knapsack", () => {
   it("should return the maximum value of the knapsack", () => {
     expect(knapsack([10, 20, 30], [60, 100, 120], 50)).toBe(220);
+  });
+});
+
+describe("Egg Dropping", () => {
+  it("should return the maximum trials required in worst case for n eggs and k floors", () => {
+    expect(eggDropping(2, 36)).toBe(8);
+    expect(eggDropping(2, 10)).toBe(4);
   });
 });
