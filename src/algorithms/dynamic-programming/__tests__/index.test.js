@@ -7,6 +7,7 @@ const LCS = require("../longest-common-subsequence/LCS");
 const minCostPath = require("../min-cost-path/MinCostPath");
 const LCS2 = require("../longest-common-substring/LCS2");
 const countStairs = require("../count-stairs/CountStairs");
+const knapsack = require("../knapsack-0-1/KnapsackDP");
 
 describe("Ugly Numbers", () => {
   it("should return the nth ugly number from the sequence", () => {
@@ -76,5 +77,11 @@ describe("Count Stairs", () => {
   it("should return the number of ways to reach the nth stairs", () => {
     expect(countStairs(4)).toBe(7);
     expect(countStairs(3)).toBe(4);
+  });
+});
+
+describe("0-1 Knapsack", () => {
+  it("should return the maximum value of the knapsack", () => {
+    expect(knapsack([10, 20, 30], [60, 100, 120], 50)).toBe(220);
   });
 });
