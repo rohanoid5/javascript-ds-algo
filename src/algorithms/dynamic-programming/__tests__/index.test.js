@@ -9,6 +9,7 @@ const LCS2 = require("../longest-common-substring/LCS2");
 const countStairs = require("../count-stairs/CountStairs");
 const knapsack = require("../knapsack-0-1/KnapsackDP");
 const eggDropping = require("../egg-dropping/EggDropping");
+const LIC = require("../longest-increasing-subsequence/LIC");
 
 describe("Ugly Numbers", () => {
   it("should return the nth ugly number from the sequence", () => {
@@ -91,5 +92,12 @@ describe("Egg Dropping", () => {
   it("should return the maximum trials required in worst case for n eggs and k floors", () => {
     expect(eggDropping(2, 36)).toBe(8);
     expect(eggDropping(2, 10)).toBe(4);
+  });
+});
+
+describe("Longest Increasing Subsequence", () => {
+  it("should return the longest increasing subsequence of an array of numbers", () => {
+    expect(LIC([1, 2, 4, 3])).toBe(3);
+    expect(LIC([10, 22, 9, 33, 21, 50, 41, 60])).toBe(5);
   });
 });
