@@ -10,6 +10,7 @@ const countStairs = require("../count-stairs/CountStairs");
 const knapsack = require("../knapsack-0-1/KnapsackDP");
 const eggDropping = require("../egg-dropping/EggDropping");
 const LIC = require("../longest-increasing-subsequence/LIC");
+const partitionSum = require("../partition-problem/PartitionProblem");
 
 describe("Ugly Numbers", () => {
   it("should return the nth ugly number from the sequence", () => {
@@ -99,5 +100,12 @@ describe("Longest Increasing Subsequence", () => {
   it("should return the longest increasing subsequence of an array of numbers", () => {
     expect(LIC([1, 2, 4, 3])).toBe(3);
     expect(LIC([10, 22, 9, 33, 21, 50, 41, 60])).toBe(5);
+  });
+});
+
+describe("Partition Problem", () => {
+  it("should return whether a set can be partitioned in 2 equal halves", () => {
+    expect(partitionSum([1, 5, 11, 5])).toBe(true);
+    expect(partitionSum([1, 5, 3])).toBe(false);
   });
 });
