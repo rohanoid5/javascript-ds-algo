@@ -1,4 +1,5 @@
 const BinaryNode = require("../../../data-structures/tree/BinaryNode");
+const isBinaryTreeBalanced = require("../check-tree-balance/CheckBinaryTreeBalanced");
 
 const getDiameterOfBinaryTree = require("../diameter-binary-tree/DiameterBinaryTree");
 
@@ -21,6 +22,27 @@ describe("Binary Tree", () => {
       root.right.left.right.left = new BinaryNode(10);
       root.right.right.left.left = new BinaryNode(11);
       expect(getDiameterOfBinaryTree(root)).toBe(7);
+    });
+  });
+
+  describe("Check whether Binary Tree is Height-Balanced", () => {
+    it("should check if a Binary Tree is Height-Balanced", () => {
+      const root = new BinaryNode(1);
+      root.left = new BinaryNode(2);
+      root.right = new BinaryNode(3);
+      root.left.left = new BinaryNode(4);
+      root.left.right = new BinaryNode(5);
+      root.left.left.left = new BinaryNode(8);
+      expect(isBinaryTreeBalanced(root)).toBe(false);
+
+      const root1 = new BinaryNode(1);
+      root1.left = new BinaryNode(2);
+      root1.right = new BinaryNode(3);
+      root1.left.left = new BinaryNode(4);
+      root1.left.right = new BinaryNode(5);
+      root1.right.left = new BinaryNode(6);
+      root1.left.left.left = new BinaryNode(7);
+      expect(isBinaryTreeBalanced(root1)).toBe(true);
     });
   });
 });
