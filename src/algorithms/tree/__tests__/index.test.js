@@ -2,6 +2,7 @@ const BinaryNode = require("../../../data-structures/tree/BinaryNode");
 
 const isBinaryTreeBalanced = require("../check-tree-balance/CheckBinaryTreeBalanced");
 const getDiameterOfBinaryTree = require("../diameter-binary-tree/DiameterBinaryTree");
+const buildTreeFromInorderPreporder = require("../inorder-preorder-tree-construction/InorderPreorderTreeConstruction");
 const getInorderSuccessor = require("../inorder-successor/InorderSuccessor");
 
 describe("Binary Tree", () => {
@@ -58,5 +59,21 @@ describe("Binary Tree", () => {
     expect(getInorderSuccessor(root, root.right).value).toBe(6);
     expect(getInorderSuccessor(root, root.left.left).value).toBe(2);
     expect(getInorderSuccessor(root, root.right.right).value).toBe(null);
+  });
+
+  describe("Construct Tree from given Inorder and Preorder traversals", () => {
+    it("should return a tree", () => {
+      let In = ["D", "B", "E", "A", "F", "C"];
+      let Pre = ["A", "B", "D", "E", "C", "F"];
+      let len = In.length;
+      const root = new BinaryNode("A");
+      root.left = new BinaryNode("B");
+      root.right = new BinaryNode("C");
+      root.left.left = new BinaryNode("D");
+      root.left.right = new BinaryNode("E");
+      root.right.left = new BinaryNode("F");
+
+      expect(buildTreeFromInorderPreporder(In, Pre, 0, len)).toEqual(root);
+    });
   });
 });
