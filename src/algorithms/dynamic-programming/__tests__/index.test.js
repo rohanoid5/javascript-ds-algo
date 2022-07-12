@@ -11,6 +11,7 @@ const knapsack = require("../knapsack-0-1/KnapsackDP");
 const eggDropping = require("../egg-dropping/EggDropping");
 const LIC = require("../longest-increasing-subsequence/LIC");
 const partitionSum = require("../partition-problem/PartitionProblem");
+const LPS = require("../longest-palindromic-subsequence/LPS");
 
 describe("Ugly Numbers", () => {
   it("should return the nth ugly number from the sequence", () => {
@@ -107,5 +108,12 @@ describe("Partition Problem", () => {
   it("should return whether a set can be partitioned in 2 equal halves", () => {
     expect(partitionSum([1, 5, 11, 5])).toBe(true);
     expect(partitionSum([1, 5, 3])).toBe(false);
+  });
+});
+
+describe("Longest Palindromic Subsequence", () => {
+  it("should return the largest palindromic subsequence length", () => {
+    expect(LPS("GEEKSFORGEEKS")).toBe(5);
+    expect(LPS("“BBABCBCAB”")).toBe(7);
   });
 });
