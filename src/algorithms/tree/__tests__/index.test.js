@@ -1,6 +1,8 @@
+const LinkedListNode = require("../../../data-structures/linked-list/LinkedList");
 const BinaryNode = require("../../../data-structures/tree/BinaryNode");
 
 const isBinaryTreeBalanced = require("../check-tree-balance/CheckBinaryTreeBalanced");
+const buildCompleteTreeFromLinkedList = require("../complete-tree-linkedlist/completeTreeConstructionFromLinkedList");
 const getDiameterOfBinaryTree = require("../diameter-binary-tree/DiameterBinaryTree");
 const buildTreeFromInorderLevelOrder = require("../inorder-level-order-tree-construction/InLevelTreeConstruction");
 const buildTreeFromInorderPreporder = require("../inorder-preorder-tree-construction/InorderPreorderTreeConstruction");
@@ -92,5 +94,23 @@ describe("Binary Tree", () => {
 
       expect(buildTreeFromInorderLevelOrder(inorder, level)).toEqual(root);
     });
+  });
+
+  describe("Construct Complete tree from LinkedList", () => {
+    const head = new LinkedListNode(10);
+    head.next = new LinkedListNode(12);
+    head.next.next = new LinkedListNode(15);
+    head.next.next.next = new LinkedListNode(25);
+    head.next.next.next.next = new LinkedListNode(30);
+    head.next.next.next.next.next = new LinkedListNode(36);
+
+    const root = new BinaryNode(10);
+    root.left = new BinaryNode(12);
+    root.right = new BinaryNode(15);
+    root.left.left = new BinaryNode(25);
+    root.left.right = new BinaryNode(30);
+    root.right.left = new BinaryNode(36);
+
+    expect(buildCompleteTreeFromLinkedList(head)).toEqual(root);
   });
 });
