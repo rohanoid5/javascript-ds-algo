@@ -12,6 +12,7 @@ const eggDropping = require("../egg-dropping/EggDropping");
 const LIC = require("../longest-increasing-subsequence/LIC");
 const partitionSum = require("../partition-problem/PartitionProblem");
 const LPS = require("../longest-palindromic-subsequence/LPS");
+const { LAS, LAS2 } = require("../longest-alternating-subsequence/LAS");
 
 describe("Ugly Numbers", () => {
   it("should return the nth ugly number from the sequence", () => {
@@ -115,5 +116,12 @@ describe("Longest Palindromic Subsequence", () => {
   it("should return the largest palindromic subsequence length", () => {
     expect(LPS("GEEKSFORGEEKS")).toBe(5);
     expect(LPS("“BBABCBCAB”")).toBe(7);
+  });
+});
+
+describe("Longest Alternating Sequence", () => {
+  it("should return the longest alternating sequence length", () => {
+    expect(LAS([10, 22, 9, 33, 49, 50, 31, 60])).toBe(6);
+    expect(LAS2([10, 22, 9, 33, 49, 50, 31, 60])).toBe(6);
   });
 });
