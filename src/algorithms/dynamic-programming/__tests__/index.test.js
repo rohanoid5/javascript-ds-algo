@@ -13,6 +13,10 @@ const LIC = require("../longest-increasing-subsequence/LIC");
 const partitionSum = require("../partition-problem/PartitionProblem");
 const LPS = require("../longest-palindromic-subsequence/LPS");
 const { LAS, LAS2 } = require("../longest-alternating-subsequence/LAS");
+const {
+  Job,
+  findMaxWeight,
+} = require("../weighted-job-schedule/WeightedJobSchedule");
 
 describe("Ugly Numbers", () => {
   it("should return the nth ugly number from the sequence", () => {
@@ -123,5 +127,21 @@ describe("Longest Alternating Sequence", () => {
   it("should return the longest alternating sequence length", () => {
     expect(LAS([10, 22, 9, 33, 49, 50, 31, 60])).toBe(6);
     expect(LAS2([10, 22, 9, 33, 49, 50, 31, 60])).toBe(6);
+  });
+});
+
+describe("Weighted Job Schedule", () => {
+  it("should return the maximum weight", () => {
+    const values = [
+      [3, 10, 20],
+      [1, 2, 50],
+      [6, 19, 100],
+      [2, 100, 200],
+    ];
+    const arr = values.map(
+      ([start, end, finish]) => new Job(start, end, finish)
+    );
+
+    expect(findMaxWeight(arr)).toBe(250);
   });
 });
