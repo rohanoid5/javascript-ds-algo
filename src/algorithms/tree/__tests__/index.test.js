@@ -7,6 +7,7 @@ const getDiameterOfBinaryTree = require("../diameter-binary-tree/DiameterBinaryT
 const buildTreeFromInorderLevelOrder = require("../inorder-level-order-tree-construction/InLevelTreeConstruction");
 const buildTreeFromInorderPreporder = require("../inorder-preorder-tree-construction/InorderPreorderTreeConstruction");
 const getInorderSuccessor = require("../inorder-successor/InorderSuccessor");
+const buildTreeFromLevelOrder = require("../level-order-tree-construction/levelOrderTreeConstruction");
 
 describe("Binary Tree", () => {
   describe("Diameter of a Binary Tree", () => {
@@ -96,21 +97,37 @@ describe("Binary Tree", () => {
     });
   });
 
-  describe("Construct Complete tree from LinkedList", () => {
-    const head = new LinkedListNode(10);
-    head.next = new LinkedListNode(12);
-    head.next.next = new LinkedListNode(15);
-    head.next.next.next = new LinkedListNode(25);
-    head.next.next.next.next = new LinkedListNode(30);
-    head.next.next.next.next.next = new LinkedListNode(36);
+  describe("Construct Complete Tree from LinkedList", () => {
+    it("should return a tree", () => {
+      const head = new LinkedListNode(10);
+      head.next = new LinkedListNode(12);
+      head.next.next = new LinkedListNode(15);
+      head.next.next.next = new LinkedListNode(25);
+      head.next.next.next.next = new LinkedListNode(30);
+      head.next.next.next.next.next = new LinkedListNode(36);
 
-    const root = new BinaryNode(10);
-    root.left = new BinaryNode(12);
-    root.right = new BinaryNode(15);
-    root.left.left = new BinaryNode(25);
-    root.left.right = new BinaryNode(30);
-    root.right.left = new BinaryNode(36);
+      const root = new BinaryNode(10);
+      root.left = new BinaryNode(12);
+      root.right = new BinaryNode(15);
+      root.left.left = new BinaryNode(25);
+      root.left.right = new BinaryNode(30);
+      root.right.left = new BinaryNode(36);
 
-    expect(buildCompleteTreeFromLinkedList(head)).toEqual(root);
+      expect(buildCompleteTreeFromLinkedList(head)).toEqual(root);
+    });
+  });
+
+  describe("Construct Tree from Level Order", () => {
+    it("should return a tree", () => {
+      const root = new BinaryNode(1);
+      root.left = new BinaryNode(2);
+      root.right = new BinaryNode(3);
+      root.left.left = new BinaryNode(4);
+      root.left.right = new BinaryNode(5);
+      root.right.left = new BinaryNode(6);
+
+      const resultTree = buildTreeFromLevelOrder([1, 2, 3, 4, 5, 6]);
+      expect(resultTree).toEqual(root);
+    });
   });
 });
