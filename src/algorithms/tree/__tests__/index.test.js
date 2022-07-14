@@ -9,6 +9,7 @@ const buildTreeFromInorderLevelOrder = require("../inorder-level-order-tree-cons
 const buildTreeFromInorderPreporder = require("../inorder-preorder-tree-construction/InorderPreorderTreeConstruction");
 const getInorderSuccessor = require("../inorder-successor/InorderSuccessor");
 const buildTreeFromLevelOrder = require("../level-order-tree-construction/levelOrderTreeConstruction");
+const minimumSwapBST = require("../minimum-swap-bst/MinimumSwapBST");
 const convertTreeToSumTree = require("../tree-to-sum-tree-conversion/TreeToSumTreeConversion");
 
 describe("Binary Tree", () => {
@@ -165,6 +166,24 @@ describe("Binary Tree", () => {
       sumRoot.right.right = new BinaryNode(0);
 
       expect(convertTreeToSumTree(root)).toEqual(sumRoot);
+    });
+  });
+
+  describe("Minimum Swap to turn a Binary Tree into BST", () => {
+    it("should return the minimum swaps required", () => {
+      const root = new BinaryNode(5);
+      root.left = new BinaryNode(6);
+      root.right = new BinaryNode(7);
+      root.left.left = new BinaryNode(8);
+      root.left.right = new BinaryNode(9);
+      root.right.left = new BinaryNode(10);
+      root.right.right = new BinaryNode(11);
+      expect(minimumSwapBST(root)).toBe(3);
+
+      const root2 = new BinaryNode(1);
+      root2.left = new BinaryNode(2);
+      root2.right = new BinaryNode(3);
+      expect(minimumSwapBST(root2)).toBe(1);
     });
   });
 });
