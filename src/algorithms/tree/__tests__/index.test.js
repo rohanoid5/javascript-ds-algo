@@ -1,5 +1,6 @@
 const LinkedListNode = require("../../../data-structures/linked-list/LinkedList");
 const BinaryNode = require("../../../data-structures/tree/BinaryNode");
+const convertBinaryTreeToDll = require("../binary-tree-to-doubly-linkedlist/BinaryTreeToDLinkedList");
 
 const isBinaryTreeBalanced = require("../check-tree-balance/CheckBinaryTreeBalanced");
 const buildCompleteTreeFromLinkedList = require("../complete-tree-linkedlist/completeTreeConstructionFromLinkedList");
@@ -128,6 +129,19 @@ describe("Binary Tree", () => {
 
       const resultTree = buildTreeFromLevelOrder([1, 2, 3, 4, 5, 6]);
       expect(resultTree).toEqual(root);
+    });
+  });
+
+  describe("Convert Tree to Doubly LinkedList", () => {
+    it("should return a DLL", () => {
+      const root = new BinaryNode(10);
+      root.left = new BinaryNode(12);
+      root.right = new BinaryNode(15);
+      root.left.left = new BinaryNode(25);
+      root.left.right = new BinaryNode(30);
+      root.right.left = new BinaryNode(36);
+
+      expect(convertBinaryTreeToDll(root)).toBeDefined();
     });
   });
 });
