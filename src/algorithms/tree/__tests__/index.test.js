@@ -9,6 +9,7 @@ const buildTreeFromInorderLevelOrder = require("../inorder-level-order-tree-cons
 const buildTreeFromInorderPreporder = require("../inorder-preorder-tree-construction/InorderPreorderTreeConstruction");
 const getInorderSuccessor = require("../inorder-successor/InorderSuccessor");
 const buildTreeFromLevelOrder = require("../level-order-tree-construction/levelOrderTreeConstruction");
+const convertTreeToSumTree = require("../tree-to-sum-tree-conversion/TreeToSumTreeConversion");
 
 describe("Binary Tree", () => {
   describe("Diameter of a Binary Tree", () => {
@@ -142,6 +143,28 @@ describe("Binary Tree", () => {
       root.right.left = new BinaryNode(36);
 
       expect(convertBinaryTreeToDll(root)).toBeDefined();
+    });
+  });
+
+  describe("Convert Tree to Sum Tree", () => {
+    it("should return Sum Tree", () => {
+      const root = new BinaryNode(10);
+      root.left = new BinaryNode(-2);
+      root.right = new BinaryNode(6);
+      root.left.left = new BinaryNode(8);
+      root.left.right = new BinaryNode(-4);
+      root.right.left = new BinaryNode(7);
+      root.right.right = new BinaryNode(5);
+
+      const sumRoot = new BinaryNode(20);
+      sumRoot.left = new BinaryNode(4);
+      sumRoot.right = new BinaryNode(12);
+      sumRoot.left.left = new BinaryNode(0);
+      sumRoot.left.right = new BinaryNode(0);
+      sumRoot.right.left = new BinaryNode(0);
+      sumRoot.right.right = new BinaryNode(0);
+
+      expect(convertTreeToSumTree(root)).toEqual(sumRoot);
     });
   });
 });
