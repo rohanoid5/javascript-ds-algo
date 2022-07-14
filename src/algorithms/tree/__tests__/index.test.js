@@ -4,6 +4,7 @@ const convertBinaryTreeToDll = require("../binary-tree-to-doubly-linkedlist/Bina
 
 const isBinaryTreeBalanced = require("../check-tree-balance/CheckBinaryTreeBalanced");
 const buildCompleteTreeFromLinkedList = require("../complete-tree-linkedlist/completeTreeConstructionFromLinkedList");
+const convertTernaryToBinaryTree = require("../convert-ternary-expression-tree/ConvertTernaryExpressionTree");
 const getDiameterOfBinaryTree = require("../diameter-binary-tree/DiameterBinaryTree");
 const buildTreeFromInorderLevelOrder = require("../inorder-level-order-tree-construction/InLevelTreeConstruction");
 const buildTreeFromInorderPreporder = require("../inorder-preorder-tree-construction/InorderPreorderTreeConstruction");
@@ -184,6 +185,12 @@ describe("Binary Tree", () => {
       root2.left = new BinaryNode(2);
       root2.right = new BinaryNode(3);
       expect(minimumSwapBST(root2)).toBe(1);
+    });
+  });
+
+  describe("Convert Ternary Expression to Binary Tree", () => {
+    it("should return the binary tree", () => {
+      console.log(convertTernaryToBinaryTree("a?b:c", 0));
     });
   });
 });
