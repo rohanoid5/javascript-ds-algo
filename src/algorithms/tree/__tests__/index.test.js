@@ -1,6 +1,7 @@
 const LinkedListNode = require("../../../data-structures/linked-list/LinkedList");
 const BinaryNode = require("../../../data-structures/tree/BinaryNode");
 const convertBinaryTreeToDll = require("../binary-tree-to-doubly-linkedlist/BinaryTreeToDLinkedList");
+const isCousin = require("../check-cousin/CheckCousin");
 
 const isBinaryTreeBalanced = require("../check-tree-balance/CheckBinaryTreeBalanced");
 const buildCompleteTreeFromLinkedList = require("../complete-tree-linkedlist/completeTreeConstructionFromLinkedList");
@@ -190,7 +191,24 @@ describe("Binary Tree", () => {
 
   describe("Convert Ternary Expression to Binary Tree", () => {
     it("should return the binary tree", () => {
-      console.log(convertTernaryToBinaryTree("a?b:c", 0));
+      expect(convertTernaryToBinaryTree("a?b:c", 0)).toBeDefined();
+    });
+  });
+
+  describe("Check two nodes in Binary Tree are Cousins", () => {
+    it("should return true or false if nodes are cousins or not cousins", () => {
+      const root = new BinaryNode(1);
+      root.left = new BinaryNode(2);
+      root.right = new BinaryNode(3);
+      root.left.left = new BinaryNode(4);
+      root.left.right = new BinaryNode(5);
+      root.left.right.right = new BinaryNode(15);
+      root.right.left = new BinaryNode(6);
+      root.right.right = new BinaryNode(7);
+      root.right.left.right = new BinaryNode(8);
+
+      expect(isCousin(root, root.left.left, root.right.right)).toBe(true);
+      expect(isCousin(root, root.left.left, root.right.left.right)).toBe(false);
     });
   });
 });
