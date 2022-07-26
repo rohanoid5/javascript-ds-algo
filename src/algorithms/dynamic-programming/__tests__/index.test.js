@@ -19,6 +19,7 @@ const {
 } = require("../weighted-job-schedule/WeightedJobSchedule");
 const jumpGame1 = require("../jump-game-1/JumpGame1");
 const jumpGame2 = require("../jump-game-2/JumpGame2");
+const countNumberOfPartition = require("../count-number-partition/CountNumberOfPartition");
 
 describe("Ugly Numbers", () => {
   it("should return the nth ugly number from the sequence", () => {
@@ -159,5 +160,11 @@ describe("Count number of jumps to reach end", () => {
     expect(jumpGame2([1, 3, 5, 8, 9, 1, 0, 7, 6, 8, 9])).toEqual([
       52, 52, 28, 16, 8, -1, -1, 4, 2, 1, 0,
     ]);
+  });
+});
+
+describe("Count number of Partitions for n numbers in k subsets", () => {
+  it("should return the number of partitions", () => {
+    expect(countNumberOfPartition(5, 2)).toBe(15);
   });
 });
