@@ -30,6 +30,7 @@ const getMinimumSpanningTree2 = require("../kruskals-mst/MinimumSpanningTree2");
 const getMinimumSpanningTree = require("../prims-mst/MinimumSpanningTree");
 
 const { pathTo } = require("../util");
+const findMotherVertex = require("../find-mother-vertex/FindMotherVertex");
 
 describe("Graph", () => {
   describe("Depth First Search", () => {
@@ -684,6 +685,28 @@ describe("Graph", () => {
         "1,4": 5,
         "0,3": 6,
       });
+    });
+  });
+
+  describe("Find Mother Vertex", () => {
+    it("should return the mother vertex if it exists otherwise return -1", () => {
+      const graph = new GraphWithAdjacencyMatrix(7, true);
+      graph.addEdge(0, 1);
+      graph.addEdge(0, 2);
+      graph.addEdge(1, 3);
+      graph.addEdge(4, 1);
+      graph.addEdge(6, 4);
+      graph.addEdge(5, 6);
+      graph.addEdge(5, 2);
+      graph.addEdge(6, 0);
+      expect(findMotherVertex(graph)).toBe(5);
+
+      const graph2 = new GraphWithAdjacencyMatrix(4, true);
+      graph2.addEdge(3, 0);
+      graph2.addEdge(3, 1);
+      graph2.addEdge(1, 2);
+      graph2.addEdge(0, 1);
+      expect(findMotherVertex(graph2)).toBe(3);
     });
   });
 });
