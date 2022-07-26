@@ -17,6 +17,7 @@ const getInorderSuccessor = require("../inorder-successor/InorderSuccessor");
 const checkLeavesSameLevel = require("../leaves-same-level/SameLevelLeaves");
 const buildTreeFromLevelOrder = require("../level-order-tree-construction/levelOrderTreeConstruction");
 const minimumSwapBST = require("../minimum-swap-bst/MinimumSwapBST");
+const checkPerfectBinaryTree = require("../perfect-binary-tree/PerfectBinaryTree");
 const convertTreeToSumTree = require("../tree-to-sum-tree-conversion/TreeToSumTreeConversion");
 
 describe("Binary Tree", () => {
@@ -241,6 +242,20 @@ describe("Binary Tree", () => {
 
       expect(checkSumTree1(root)).toBe(true);
       expect(checkSumTree2(root)).toBe(true);
+    });
+  });
+
+  describe("Check if the Binary tree is perfect", () => {
+    it("should return true or false", () => {
+      const root = new BinaryNode(10);
+      root.left = new BinaryNode(20);
+      root.right = new BinaryNode(30);
+      root.left.left = new BinaryNode(40);
+      root.left.right = new BinaryNode(50);
+      root.right.left = new BinaryNode(60);
+      root.right.right = new BinaryNode(70);
+
+      expect(checkPerfectBinaryTree(root)).toBe(true);
     });
   });
 });
