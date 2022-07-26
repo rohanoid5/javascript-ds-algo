@@ -17,6 +17,8 @@ const {
   Job,
   findMaxWeight,
 } = require("../weighted-job-schedule/WeightedJobSchedule");
+const jumpGame1 = require("../jump-game-1/JumpGame1");
+const jumpGame2 = require("../jump-game-2/JumpGame2");
 
 describe("Ugly Numbers", () => {
   it("should return the nth ugly number from the sequence", () => {
@@ -143,5 +145,19 @@ describe("Weighted Job Schedule", () => {
     );
 
     expect(findMaxWeight(arr)).toBe(250);
+  });
+});
+
+describe("Minimum number of jumps to reach end", () => {
+  it("should return the minimum number of jumps required to reach end", () => {
+    expect(jumpGame1([1, 3, 6, 1, 0, 9])).toBe(3);
+  });
+});
+
+describe("Count number of jumps to reach end", () => {
+  it("should return the number of jumps required to reach end for each index", () => {
+    expect(jumpGame2([1, 3, 5, 8, 9, 1, 0, 7, 6, 8, 9])).toEqual([
+      52, 52, 28, 16, 8, -1, -1, 4, 2, 1, 0,
+    ]);
   });
 });
