@@ -12,6 +12,7 @@ const checkCompleteBinaryTree = require("../complete-binary-tree/CompleteBinaryT
 const buildCompleteTreeFromLinkedList = require("../complete-tree-linkedlist/completeTreeConstructionFromLinkedList");
 const convertTernaryToBinaryTree = require("../convert-ternary-expression-tree/ConvertTernaryExpressionTree");
 const getDiameterOfBinaryTree = require("../diameter-binary-tree/DiameterBinaryTree");
+const findMaxSubTree = require("../find-max-subtree-sum/MaxSubtreeSum");
 const buildTreeFromInorderLevelOrder = require("../inorder-level-order-tree-construction/InLevelTreeConstruction");
 const buildTreeFromInorderPreporder = require("../inorder-preorder-tree-construction/InorderPreorderTreeConstruction");
 const getInorderSuccessor = require("../inorder-successor/InorderSuccessor");
@@ -270,6 +271,20 @@ describe("Binary Tree", () => {
       root.right.left = new BinaryNode(6);
 
       expect(checkCompleteBinaryTree(root)).toBe(true);
+    });
+  });
+
+  describe("Find Max Subtree Sum in Binary Tree", () => {
+    it("should return the max sum", () => {
+      const root = new BinaryNode(1);
+      root.left = new BinaryNode(-2);
+      root.right = new BinaryNode(3);
+      root.left.left = new BinaryNode(4);
+      root.left.right = new BinaryNode(5);
+      root.right.left = new BinaryNode(-6);
+      root.right.right = new BinaryNode(2);
+
+      expect(findMaxSubTree(root)).toBe(7);
     });
   });
 });
