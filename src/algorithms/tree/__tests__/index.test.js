@@ -8,6 +8,7 @@ const {
 } = require("../check-sum-tree/CheckSumTree");
 
 const isBinaryTreeBalanced = require("../check-tree-balance/CheckBinaryTreeBalanced");
+const checkCompleteBinaryTree = require("../complete-binary-tree/CompleteBinaryTree");
 const buildCompleteTreeFromLinkedList = require("../complete-tree-linkedlist/completeTreeConstructionFromLinkedList");
 const convertTernaryToBinaryTree = require("../convert-ternary-expression-tree/ConvertTernaryExpressionTree");
 const getDiameterOfBinaryTree = require("../diameter-binary-tree/DiameterBinaryTree");
@@ -245,7 +246,7 @@ describe("Binary Tree", () => {
     });
   });
 
-  describe("Check if the Binary tree is perfect", () => {
+  describe("Check if the Binary Tree is Perfect", () => {
     it("should return true or false", () => {
       const root = new BinaryNode(10);
       root.left = new BinaryNode(20);
@@ -256,6 +257,19 @@ describe("Binary Tree", () => {
       root.right.right = new BinaryNode(70);
 
       expect(checkPerfectBinaryTree(root)).toBe(true);
+    });
+  });
+
+  describe("Check if the Binary Tree is Complete", () => {
+    it("should return true or false", () => {
+      const root = new BinaryNode(1);
+      root.left = new BinaryNode(2);
+      root.right = new BinaryNode(3);
+      root.left.left = new BinaryNode(4);
+      root.left.right = new BinaryNode(5);
+      root.right.left = new BinaryNode(6);
+
+      expect(checkCompleteBinaryTree(root)).toBe(true);
     });
   });
 });
