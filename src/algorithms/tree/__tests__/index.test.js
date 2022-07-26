@@ -2,6 +2,10 @@ const LinkedListNode = require("../../../data-structures/linked-list/LinkedList"
 const BinaryNode = require("../../../data-structures/tree/BinaryNode");
 const convertBinaryTreeToDll = require("../binary-tree-to-doubly-linkedlist/BinaryTreeToDLinkedList");
 const isCousin = require("../check-cousin/CheckCousin");
+const {
+  checkSumTree1,
+  checkSumTree2,
+} = require("../check-sum-tree/CheckSumTree");
 
 const isBinaryTreeBalanced = require("../check-tree-balance/CheckBinaryTreeBalanced");
 const buildCompleteTreeFromLinkedList = require("../complete-tree-linkedlist/completeTreeConstructionFromLinkedList");
@@ -10,6 +14,7 @@ const getDiameterOfBinaryTree = require("../diameter-binary-tree/DiameterBinaryT
 const buildTreeFromInorderLevelOrder = require("../inorder-level-order-tree-construction/InLevelTreeConstruction");
 const buildTreeFromInorderPreporder = require("../inorder-preorder-tree-construction/InorderPreorderTreeConstruction");
 const getInorderSuccessor = require("../inorder-successor/InorderSuccessor");
+const checkLeavesSameLevel = require("../leaves-same-level/SameLevelLeaves");
 const buildTreeFromLevelOrder = require("../level-order-tree-construction/levelOrderTreeConstruction");
 const minimumSwapBST = require("../minimum-swap-bst/MinimumSwapBST");
 const convertTreeToSumTree = require("../tree-to-sum-tree-conversion/TreeToSumTreeConversion");
@@ -209,6 +214,33 @@ describe("Binary Tree", () => {
 
       expect(isCousin(root, root.left.left, root.right.right)).toBe(true);
       expect(isCousin(root, root.left.left, root.right.left.right)).toBe(false);
+    });
+  });
+
+  describe("Check if a Binary Tree has all leaves in same level", () => {
+    it("should return true or false", () => {
+      const root = new BinaryNode(12);
+      root.left = new BinaryNode(5);
+      root.left.left = new BinaryNode(3);
+      root.left.right = new BinaryNode(9);
+      root.left.left.left = new BinaryNode(1);
+      root.left.right.left = new BinaryNode(1);
+
+      expect(checkLeavesSameLevel(root)).toBe(true);
+    });
+  });
+
+  describe("Check if a Binary Tree is Sum Tree", () => {
+    it("should return true or false", () => {
+      const root = new BinaryNode(26);
+      root.left = new BinaryNode(10);
+      root.right = new BinaryNode(3);
+      root.left.left = new BinaryNode(4);
+      root.left.right = new BinaryNode(6);
+      root.right.right = new BinaryNode(3);
+
+      expect(checkSumTree1(root)).toBe(true);
+      expect(checkSumTree2(root)).toBe(true);
     });
   });
 });
