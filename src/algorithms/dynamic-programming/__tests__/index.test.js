@@ -20,6 +20,7 @@ const {
 const jumpGame1 = require("../jump-game-1/JumpGame1");
 const jumpGame2 = require("../jump-game-2/JumpGame2");
 const countNumberOfPartition = require("../count-number-partition/CountNumberOfPartition");
+const largestContiguousSum = require("../largest-contiguous-sum/LargestContiguousSum");
 
 describe("Ugly Numbers", () => {
   it("should return the nth ugly number from the sequence", () => {
@@ -166,5 +167,12 @@ describe("Count number of jumps to reach end", () => {
 describe("Count number of Partitions for n numbers in k subsets", () => {
   it("should return the number of partitions", () => {
     expect(countNumberOfPartition(5, 2)).toBe(15);
+  });
+});
+
+describe("Largest Contiguous Sub-Array Sum", () => {
+  it("should return the largest sum", () => {
+    expect(largestContiguousSum([-2, -3, 4, -1, -2, 1, 5, -3])).toBe(7);
+    expect(largestContiguousSum([4, -8, 9, -4, 1, -8, -1, 6])).toBe(9);
   });
 });

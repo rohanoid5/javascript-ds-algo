@@ -10,5 +10,7 @@ describe("Sum of all minimums of Sub Arrays", () => {
 });
 
 describe("Largest Sum of Contiguous Sub-Array", () => {
-  expect(largestContiguousSum([-2, -3, 4, -1, -2, 1, 5, -3])).toBe(7);
+  it("should return the largest sum", () => {
+    expect(largestContiguousSum([-2, -3, 4, -1, -2, 1, 5, -3])).toBe(7);
+  });
 });
