@@ -17,6 +17,7 @@ const findMaxSubTree = require("../find-max-subtree-sum/MaxSubtreeSum");
 const buildTreeFromInorderLevelOrder = require("../inorder-level-order-tree-construction/InLevelTreeConstruction");
 const buildTreeFromInorderPreporder = require("../inorder-preorder-tree-construction/InorderPreorderTreeConstruction");
 const getInorderSuccessor = require("../inorder-successor/InorderSuccessor");
+const getKthAncestor = require("../kth-ancestor/KthAncestor");
 const checkLeavesSameLevel = require("../leaves-same-level/SameLevelLeaves");
 const buildTreeFromLevelOrder = require("../level-order-tree-construction/levelOrderTreeConstruction");
 const {
@@ -326,6 +327,20 @@ describe("Binary Tree", () => {
       root.right.left.right = new BinaryNode(8);
       expect(getDistanceBetweenTwoNodes(root, 4, 5)).toBe(2);
       expect(getDistanceBetweenTwoNodes(root, 4, 6)).toBe(4);
+    });
+  });
+
+  describe("Get Kth Ancestor of a Node in Binary Tree", () => {
+    it("should return the kth ancestor if it exists", () => {
+      const root = new BinaryNode(1);
+      root.left = new BinaryNode(2);
+      root.right = new BinaryNode(3);
+      root.left.left = new BinaryNode(4);
+      root.left.right = new BinaryNode(5);
+
+      expect(getKthAncestor(root, 5, 2)).toBe(1);
+      expect(getKthAncestor(root, 5, 1)).toBe(2);
+      expect(getKthAncestor(root, 5, 3)).toBe(-1);
     });
   });
 });
