@@ -18,6 +18,9 @@ const buildTreeFromInorderPreporder = require("../inorder-preorder-tree-construc
 const getInorderSuccessor = require("../inorder-successor/InorderSuccessor");
 const checkLeavesSameLevel = require("../leaves-same-level/SameLevelLeaves");
 const buildTreeFromLevelOrder = require("../level-order-tree-construction/levelOrderTreeConstruction");
+const {
+  getLowestCommonAncestor1,
+} = require("../lowest-common-ancestor/LowestCommonAncestor");
 const minimumSwapBST = require("../minimum-swap-bst/MinimumSwapBST");
 const checkPerfectBinaryTree = require("../perfect-binary-tree/PerfectBinaryTree");
 const convertTreeToSumTree = require("../tree-to-sum-tree-conversion/TreeToSumTreeConversion");
@@ -285,6 +288,22 @@ describe("Binary Tree", () => {
       root.right.right = new BinaryNode(2);
 
       expect(findMaxSubTree(root)).toBe(7);
+    });
+  });
+
+  describe("Lowest Common Ancestor", () => {
+    it("should return the lowest common ancestor of two nodes", () => {
+      const root = new BinaryNode(1);
+      root.left = new BinaryNode(2);
+      root.right = new BinaryNode(3);
+      root.left.left = new BinaryNode(4);
+      root.left.right = new BinaryNode(5);
+      root.right.left = new BinaryNode(6);
+      root.right.right = new BinaryNode(7);
+      expect(getLowestCommonAncestor1(root, 4, 5)).toBe(2);
+      expect(getLowestCommonAncestor1(root, 4, 6)).toBe(1);
+      expect(getLowestCommonAncestor1(root, 2, 4)).toBe(2);
+      expect(getLowestCommonAncestor1(root, 3, 4)).toBe(1);
     });
   });
 });
