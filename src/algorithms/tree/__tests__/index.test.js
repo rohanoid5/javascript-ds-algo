@@ -20,6 +20,7 @@ const checkLeavesSameLevel = require("../leaves-same-level/SameLevelLeaves");
 const buildTreeFromLevelOrder = require("../level-order-tree-construction/levelOrderTreeConstruction");
 const {
   getLowestCommonAncestor1,
+  getLowestCommonAncestor2,
 } = require("../lowest-common-ancestor/LowestCommonAncestor");
 const minimumSwapBST = require("../minimum-swap-bst/MinimumSwapBST");
 const checkPerfectBinaryTree = require("../perfect-binary-tree/PerfectBinaryTree");
@@ -304,6 +305,11 @@ describe("Binary Tree", () => {
       expect(getLowestCommonAncestor1(root, 4, 6)).toBe(1);
       expect(getLowestCommonAncestor1(root, 2, 4)).toBe(2);
       expect(getLowestCommonAncestor1(root, 3, 4)).toBe(1);
+
+      expect(getLowestCommonAncestor2(root, 4, 5).value).toBe(2);
+      expect(getLowestCommonAncestor2(root, 4, 6).value).toBe(1);
+      expect(getLowestCommonAncestor2(root, 2, 4).value).toBe(2);
+      expect(getLowestCommonAncestor2(root, 3, 4).value).toBe(1);
     });
   });
 });

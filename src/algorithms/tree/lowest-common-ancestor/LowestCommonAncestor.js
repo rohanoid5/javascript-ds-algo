@@ -44,6 +44,27 @@ const getPathFromRoot = function (node, target, path) {
   return false;
 };
 
+/**
+ * Solution:
+ * 1. Check if the root node is equal to n1 or n2.
+ * 2. If yest then that node is LCA
+ * 3. Check for LCA in left and right subtree
+ * 4. If both have non-null values then parent of left and right is LCA
+ * 5. Otherwise the LCA is in either left or right, whichever is non-null
+ */
+const getLowestCommonAncestor2 = function (node, n1, n2) {
+  if (node === null) return null;
+  if (node.value === n1 || node.value === n2) return node;
+
+  let leftLCA = getLowestCommonAncestor2(node.left, n1, n2);
+  let rightLCA = getLowestCommonAncestor2(node.right, n1, n2);
+
+  if (leftLCA !== null && rightLCA !== null) return node;
+
+  return leftLCA ? leftLCA : rightLCA;
+};
+
 module.exports = {
   getLowestCommonAncestor1,
+  getLowestCommonAncestor2,
 };
