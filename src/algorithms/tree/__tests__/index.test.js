@@ -12,6 +12,7 @@ const checkCompleteBinaryTree = require("../complete-binary-tree/CompleteBinaryT
 const buildCompleteTreeFromLinkedList = require("../complete-tree-linkedlist/completeTreeConstructionFromLinkedList");
 const convertTernaryToBinaryTree = require("../convert-ternary-expression-tree/ConvertTernaryExpressionTree");
 const getDiameterOfBinaryTree = require("../diameter-binary-tree/DiameterBinaryTree");
+const getDistanceBetweenTwoNodes = require("../distance-between-nodes/DistanceBetweenTwoNodes");
 const findMaxSubTree = require("../find-max-subtree-sum/MaxSubtreeSum");
 const buildTreeFromInorderLevelOrder = require("../inorder-level-order-tree-construction/InLevelTreeConstruction");
 const buildTreeFromInorderPreporder = require("../inorder-preorder-tree-construction/InorderPreorderTreeConstruction");
@@ -310,6 +311,21 @@ describe("Binary Tree", () => {
       expect(getLowestCommonAncestor2(root, 4, 6).value).toBe(1);
       expect(getLowestCommonAncestor2(root, 2, 4).value).toBe(2);
       expect(getLowestCommonAncestor2(root, 3, 4).value).toBe(1);
+    });
+  });
+
+  describe("Distance between two nodes", () => {
+    it("should return the distance between 2 nodes", () => {
+      const root = new BinaryNode(1);
+      root.left = new BinaryNode(2);
+      root.right = new BinaryNode(3);
+      root.left.left = new BinaryNode(4);
+      root.left.right = new BinaryNode(5);
+      root.right.left = new BinaryNode(6);
+      root.right.right = new BinaryNode(7);
+      root.right.left.right = new BinaryNode(8);
+      expect(getDistanceBetweenTwoNodes(root, 4, 5)).toBe(2);
+      expect(getDistanceBetweenTwoNodes(root, 4, 6)).toBe(4);
     });
   });
 });
