@@ -24,11 +24,11 @@ const editDistance = function (str1, str2) {
   let n = str2.length;
   let table = new Array(m + 1).fill(null).map((_) => new Array(n + 1).fill(0));
 
-  for (let i = 0; i < m; i++) {
+  for (let i = 0; i <= m; i++) {
     table[i][0] = i;
   }
 
-  for (let i = 0; i < n; i++) {
+  for (let i = 0; i <= n; i++) {
     table[0][i] = i;
   }
 

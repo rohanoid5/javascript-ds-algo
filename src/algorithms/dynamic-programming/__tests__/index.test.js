@@ -23,6 +23,7 @@ const countNumberOfPartition = require("../count-number-partition/CountNumberOfP
 const largestContiguousSum = require("../largest-contiguous-sum/LargestContiguousSum");
 const minimumDeletionForPalindrome = require("../minimum-number-deletion-palindromic-subsequence/MinimumDeletionPalindrome");
 const editDistance = require("../edit-distance/EditDistance");
+const isKPalindromic = require("../k-palindrome/CheckStringKPalindrome");
 
 describe("Ugly Numbers", () => {
   it("should return the nth ugly number from the sequence", () => {
@@ -190,5 +191,14 @@ describe("Edit Distance", () => {
   it("should return the minimum number of operations required", () => {
     expect(editDistance("sunday", "saturday")).toBe(3);
     expect(editDistance("geek", "gesek")).toBe(1);
+  });
+});
+
+describe("K-Palindromic String", () => {
+  it("should return whether a string is K-Palindromic or not", () => {
+    expect(isKPalindromic("acdcb", 2)).toBe(true);
+    expect(isKPalindromic("abcdeca", 2)).toBe(true);
+    expect(isKPalindromic("acdcb", 1)).toBe(false);
+    expect(isKPalindromic("abcdecba", 1)).toBe(true);
   });
 });
