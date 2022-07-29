@@ -43,7 +43,7 @@ class HeapWithComments {
    * We will increase the current last index N and put Entry in that index in Storage.
    * Since, we have inserted at leaf which is first available location in the Heap,
    * we need to swim the node up according to its priority
-   * @param {number | string} value
+   * @param {number | string | object} value
    * @param {number} priority
    */
   enqueue(value, priority) {

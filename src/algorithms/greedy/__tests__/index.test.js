@@ -1,4 +1,8 @@
 const activitySelection = require("../activity-selection/ActivitySelection");
+const {
+  jobSequencing,
+  jobSequencing2,
+} = require("../job-sequencing/JobSequencing");
 
 describe("Activity Selection", () => {
   it("should return the minimum activities that can be performed", () => {
@@ -20,5 +24,57 @@ describe("Activity Selection", () => {
         [20, 30],
       ])
     ).toEqual([0, 2]);
+  });
+});
+
+describe("Job Sequencing", () => {
+  it("should the return the sequence", () => {
+    expect(
+      jobSequencing(
+        [
+          ["a", 2, 100],
+          ["b", 1, 19],
+          ["c", 2, 27],
+          ["d", 1, 25],
+          ["e", 3, 15],
+        ],
+        3
+      )
+    ).toEqual(["c", "a", "e"]);
+    expect(
+      jobSequencing2(
+        [
+          ["a", 2, 100],
+          ["b", 1, 19],
+          ["c", 2, 27],
+          ["d", 1, 25],
+          ["e", 3, 15],
+        ],
+        3
+      )
+    ).toEqual(["a", "c", "e"]);
+
+    expect(
+      jobSequencing(
+        [
+          ["a", 4, 20],
+          ["b", 1, 10],
+          ["c", 1, 40],
+          ["d", 1, 30],
+        ],
+        2
+      )
+    ).toEqual(["c", "a"]);
+    expect(
+      jobSequencing2(
+        [
+          ["a", 4, 20],
+          ["b", 1, 10],
+          ["c", 1, 40],
+          ["d", 1, 30],
+        ],
+        2
+      )
+    ).toEqual(["c", "a"]);
   });
 });
