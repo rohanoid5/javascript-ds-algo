@@ -26,6 +26,11 @@ const {
 } = require("../lowest-common-ancestor/LowestCommonAncestor");
 const minimumSwapBST = require("../minimum-swap-bst/MinimumSwapBST");
 const checkPerfectBinaryTree = require("../perfect-binary-tree/PerfectBinaryTree");
+const {
+  preorderBSTConstruction1,
+  getBstInPreorder,
+  preorderBSTConstruction2,
+} = require("../preorder-bst-construction/PreorderBSTConstruction");
 const convertTreeToSumTree = require("../tree-to-sum-tree-conversion/TreeToSumTreeConversion");
 
 describe("Binary Tree", () => {
@@ -341,6 +346,28 @@ describe("Binary Tree", () => {
       expect(getKthAncestor(root, 5, 2)).toBe(1);
       expect(getKthAncestor(root, 5, 1)).toBe(2);
       expect(getKthAncestor(root, 5, 3)).toBe(-1);
+    });
+  });
+});
+
+describe("Binary Search Tree", () => {
+  describe("BST Construction from Preorder Traversal", () => {
+    it("should construct the BST", () => {
+      let bst1 = preorderBSTConstruction1([10, 5, 1, 7, 40, 50]);
+      expect(bst1.value).toBe(10);
+      expect(bst1.left.value).toBe(5);
+      expect(bst1.right.value).toBe(40);
+      expect(bst1.left.left.value).toBe(1);
+      expect(bst1.left.right.value).toBe(7);
+      expect(bst1.right.right.value).toBe(50);
+
+      let bst2 = preorderBSTConstruction2([10, 5, 1, 7, 40, 50]);
+      expect(bst2.value).toBe(10);
+      expect(bst2.left.value).toBe(5);
+      expect(bst2.right.value).toBe(40);
+      expect(bst2.left.left.value).toBe(1);
+      expect(bst2.left.right.value).toBe(7);
+      expect(bst2.right.right.value).toBe(50);
     });
   });
 });
