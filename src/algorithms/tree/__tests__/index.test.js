@@ -33,6 +33,7 @@ const {
   getBstInPreorder,
   preorderBSTConstruction2,
 } = require("../preorder-bst-construction/PreorderBSTConstruction");
+const transformBSTGreaterSum = require("../transformation-bst-greater-sum/TransformBSTGreaterSum");
 const convertTreeToSumTree = require("../tree-to-sum-tree-conversion/TreeToSumTreeConversion");
 
 describe("Binary Tree", () => {
@@ -398,7 +399,31 @@ describe("Binary Search Tree", () => {
       const root2 = new BinaryNode(4);
       root2.left = new BinaryNode(2);
       root2.right = new BinaryNode(6);
-      console.log(mergeTwoBSTs(root1, root2));
+      expect(mergeTwoBSTs(root1, root2)).toEqual([1, 2, 3, 4, 5, 6]);
+    });
+  });
+
+  describe("Transform BST to Greater Sum Tree", () => {
+    it("should return greater sum tree", () => {
+      const root = new BinaryNode(11);
+      root.left = new BinaryNode(2);
+      root.right = new BinaryNode(29);
+      root.left.left = new BinaryNode(1);
+      root.left.right = new BinaryNode(7);
+      root.right.left = new BinaryNode(15);
+      root.right.right = new BinaryNode(40);
+      root.right.right.left = new BinaryNode(35);
+
+      transformBSTGreaterSum(root);
+
+      expect(root.value).toBe(119);
+      expect(root.left.value).toBe(137);
+      expect(root.right.value).toBe(75);
+      expect(root.left.left.value).toBe(139);
+      expect(root.left.right.value).toBe(130);
+      expect(root.right.left.value).toBe(104);
+      expect(root.right.right.value).toBe(0);
+      expect(root.right.right.left.value).toBe(40);
     });
   });
 });
