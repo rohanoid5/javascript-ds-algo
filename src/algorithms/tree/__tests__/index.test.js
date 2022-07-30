@@ -10,6 +10,7 @@ const {
 const isBinaryTreeBalanced = require("../check-tree-balance/CheckBinaryTreeBalanced");
 const checkCompleteBinaryTree = require("../complete-binary-tree/CompleteBinaryTree");
 const buildCompleteTreeFromLinkedList = require("../complete-tree-linkedlist/completeTreeConstructionFromLinkedList");
+const binaryTreeToBST = require("../construct-bst-from-binary-tree/constructBSTFromBinaryTree");
 const convertTernaryToBinaryTree = require("../convert-ternary-expression-tree/ConvertTernaryExpressionTree");
 const getDiameterOfBinaryTree = require("../diameter-binary-tree/DiameterBinaryTree");
 const getDistanceBetweenTwoNodes = require("../distance-between-nodes/DistanceBetweenTwoNodes");
@@ -368,6 +369,22 @@ describe("Binary Search Tree", () => {
       expect(bst2.left.left.value).toBe(1);
       expect(bst2.left.right.value).toBe(7);
       expect(bst2.right.right.value).toBe(50);
+    });
+  });
+
+  describe("Construction of BST from Binary Tree", () => {
+    it("should return a BST", () => {
+      let root = new BinaryNode(10);
+      root.left = new BinaryNode(30);
+      root.right = new BinaryNode(15);
+      root.left.left = new BinaryNode(20);
+      root.right.right = new BinaryNode(5);
+
+      expect(binaryTreeToBST(root).value).toBe(15);
+      expect(binaryTreeToBST(root).left.value).toBe(10);
+      expect(binaryTreeToBST(root).right.value).toBe(20);
+      expect(binaryTreeToBST(root).left.left.value).toBe(5);
+      expect(binaryTreeToBST(root).right.right.value).toBe(30);
     });
   });
 });
