@@ -25,6 +25,7 @@ const {
   getLowestCommonAncestor1,
   getLowestCommonAncestor2,
 } = require("../lowest-common-ancestor/LowestCommonAncestor");
+const mergeTwoBSTs = require("../merge-two-bsts/mergeTwoBsts");
 const minimumSwapBST = require("../minimum-swap-bst/MinimumSwapBST");
 const checkPerfectBinaryTree = require("../perfect-binary-tree/PerfectBinaryTree");
 const {
@@ -385,6 +386,19 @@ describe("Binary Search Tree", () => {
       expect(binaryTreeToBST(root).right.value).toBe(20);
       expect(binaryTreeToBST(root).left.left.value).toBe(5);
       expect(binaryTreeToBST(root).right.right.value).toBe(30);
+    });
+  });
+
+  describe("Merge Two BSTs", () => {
+    it("should return the two merged BSTs", () => {
+      const root1 = new BinaryNode(3);
+      root1.left = new BinaryNode(1);
+      root1.right = new BinaryNode(5);
+
+      const root2 = new BinaryNode(4);
+      root2.left = new BinaryNode(2);
+      root2.right = new BinaryNode(6);
+      console.log(mergeTwoBSTs(root1, root2));
     });
   });
 });
