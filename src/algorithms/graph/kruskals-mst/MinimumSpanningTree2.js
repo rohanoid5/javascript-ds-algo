@@ -1,7 +1,7 @@
 const WeightedGraphWithAdjacencyMatrix = require("../../../data-structures/graph/WeightedGraphWithAdjacencyMatrix");
 
 /**
- * Prim’s Minimum Spanning Tree (MST)
+ * Kruskal's Minimum Spanning Tree (MST)
  * @param {WeightedGraphWithAdjacencyMatrix} graph
  * @returns {WeightedGraphWithAdjacencyMatrix}
  */
