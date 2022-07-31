@@ -3,6 +3,7 @@ const {
   jobSequencing,
   jobSequencing2,
 } = require("../job-sequencing/JobSequencing");
+const minimumSubsetProduct = require("../minimum-subset-product/MinimumSubsetProduct");
 const policeCatchThieves = require("../police-catch-thieves/PoliceCatchThieves");
 
 describe("Activity Selection", () => {
@@ -85,5 +86,12 @@ describe("Policemen Catch Thieves", () => {
     expect(policeCatchThieves(["P", "T", "T", "P", "T"], 2)).toBe(2);
     expect(policeCatchThieves(["T", "T", "P", "P", "T", "P"], 2)).toBe(3);
     expect(policeCatchThieves(["P", "T", "P", "T", "T", "P"], 3)).toBe(3);
+  });
+});
+
+describe("Minimum Product of Subset", () => {
+  it("should return the minimum subset", () => {
+    expect(minimumSubsetProduct([-1, -1, -2, 4, 3])).toBe(-24);
+    expect(minimumSubsetProduct([-1, 0])).toBe(-1);
   });
 });
