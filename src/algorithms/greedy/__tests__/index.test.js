@@ -3,6 +3,7 @@ const {
   jobSequencing,
   jobSequencing2,
 } = require("../job-sequencing/JobSequencing");
+const policeCatchThieves = require("../police-catch-thieves/PoliceCatchThieves");
 
 describe("Activity Selection", () => {
   it("should return the minimum activities that can be performed", () => {
@@ -76,5 +77,13 @@ describe("Job Sequencing", () => {
         2
       )
     ).toEqual(["c", "a"]);
+  });
+});
+
+describe("Policemen Catch Thieves", () => {
+  it("should return the maximum number of thieves possible to catch", () => {
+    expect(policeCatchThieves(["P", "T", "T", "P", "T"], 2)).toBe(2);
+    expect(policeCatchThieves(["T", "T", "P", "P", "T", "P"], 2)).toBe(3);
+    expect(policeCatchThieves(["P", "T", "P", "T", "T", "P"], 3)).toBe(3);
   });
 });
