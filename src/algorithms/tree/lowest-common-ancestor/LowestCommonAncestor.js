@@ -47,7 +47,7 @@ const getPathFromRoot = function (node, target, path) {
 /**
  * Solution:
  * 1. Check if the root node is equal to n1 or n2.
- * 2. If yest then that node is LCA
+ * 2. If yes then that node is LCA
  * 3. Check for LCA in left and right subtree
  * 4. If both have non-null values then parent of left and right is LCA
  * 5. Otherwise the LCA is in either left or right, whichever is non-null

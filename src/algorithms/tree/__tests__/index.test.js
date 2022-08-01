@@ -1,5 +1,6 @@
 const LinkedListNode = require("../../../data-structures/linked-list/LinkedList");
 const BinaryNode = require("../../../data-structures/tree/BinaryNode");
+const BinarySearchTreeWithComments = require("../../../data-structures/tree/BinarySearchTreeWithComments");
 const convertBinaryTreeToDll = require("../binary-tree-to-doubly-linkedlist/BinaryTreeToDLinkedList");
 const isCousin = require("../check-cousin/CheckCousin");
 const {
@@ -17,6 +18,7 @@ const getDistanceBetweenTwoNodes = require("../distance-between-nodes/DistanceBe
 const findMaxSubTree = require("../find-max-subtree-sum/MaxSubtreeSum");
 const buildTreeFromInorderLevelOrder = require("../inorder-level-order-tree-construction/InLevelTreeConstruction");
 const buildTreeFromInorderPreporder = require("../inorder-preorder-tree-construction/InorderPreorderTreeConstruction");
+const getInorderSuccessorPredecessor = require("../inorder-successor-predecessor-bst/InorderSucessorPredecessorBst");
 const getInorderSuccessor = require("../inorder-successor/InorderSuccessor");
 const getKthAncestor = require("../kth-ancestor/KthAncestor");
 const checkLeavesSameLevel = require("../leaves-same-level/SameLevelLeaves");
@@ -424,6 +426,28 @@ describe("Binary Search Tree", () => {
       expect(root.right.left.value).toBe(104);
       expect(root.right.right.value).toBe(0);
       expect(root.right.right.left.value).toBe(40);
+    });
+  });
+
+  describe("Inorder Successor and Predecessor of BST", () => {
+    it("should return the successor and predecessor of a node", () => {
+      const root = new BinarySearchTreeWithComments();
+      root.insert(50);
+      root.insert(30);
+      root.insert(20);
+      root.insert(40);
+      root.insert(70);
+      root.insert(60);
+      root.insert(80);
+
+      expect(getInorderSuccessorPredecessor(root.root, 30)).toEqual({
+        successor: 40,
+        predecessor: 20,
+      });
+      expect(getInorderSuccessorPredecessor(root.root, 60)).toEqual({
+        successor: 70,
+        predecessor: 50,
+      });
     });
   });
 });
