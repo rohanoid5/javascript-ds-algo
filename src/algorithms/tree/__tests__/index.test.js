@@ -29,6 +29,7 @@ const {
 } = require("../lowest-common-ancestor/LowestCommonAncestor");
 const mergeTwoBSTs = require("../merge-two-bsts/mergeTwoBsts");
 const minimumSwapBST = require("../minimum-swap-bst/MinimumSwapBST");
+const pairGivenSumInBST = require("../pair-given-sum-bst/PairGivenSumBst");
 const checkPerfectBinaryTree = require("../perfect-binary-tree/PerfectBinaryTree");
 const {
   preorderBSTConstruction1,
@@ -448,6 +449,23 @@ describe("Binary Search Tree", () => {
         successor: 70,
         predecessor: 50,
       });
+    });
+  });
+
+  describe("Pair of Nodes in BST for given Sum", () => {
+    it("should return a Pair for a sum if it exists", () => {
+      const root = new BinarySearchTreeWithComments();
+      root.insert(15);
+      root.insert(10);
+      root.insert(20);
+      root.insert(8);
+      root.insert(12);
+      root.insert(16);
+      root.insert(25);
+      root.insert(10);
+
+      expect(pairGivenSumInBST(root.root, 33)).toEqual([8, 25]);
+      expect(pairGivenSumInBST(root.root, 25)).toEqual([10, 15]);
     });
   });
 });
