@@ -23,6 +23,7 @@ const getInorderSuccessor = require("../inorder-successor/InorderSuccessor");
 const getKthAncestor = require("../kth-ancestor/KthAncestor");
 const checkLeavesSameLevel = require("../leaves-same-level/SameLevelLeaves");
 const buildTreeFromLevelOrder = require("../level-order-tree-construction/levelOrderTreeConstruction");
+const getLowestCommonAncestorBST = require("../lowest-common-ancestor-bst/LowestCommonAncestorBst");
 const {
   getLowestCommonAncestor1,
   getLowestCommonAncestor2,
@@ -466,6 +467,22 @@ describe("Binary Search Tree", () => {
 
       expect(pairGivenSumInBST(root.root, 33)).toEqual([8, 25]);
       expect(pairGivenSumInBST(root.root, 25)).toEqual([10, 15]);
+    });
+  });
+
+  describe("Lowest Common Ancestor of two nodes in BST", () => {
+    it("should return the lca", () => {
+      const root = new BinaryNode(20);
+      root.left = new BinaryNode(8);
+      root.right = new BinaryNode(22);
+      root.left.left = new BinaryNode(4);
+      root.left.right = new BinaryNode(12);
+      root.left.right.left = new BinaryNode(10);
+      root.left.right.right = new BinaryNode(14);
+
+      expect(getLowestCommonAncestorBST(root, 10, 14).value).toBe(12);
+      expect(getLowestCommonAncestorBST(root, 4, 14).value).toBe(8);
+      expect(getLowestCommonAncestorBST(root, 4, 22).value).toBe(20);
     });
   });
 });
