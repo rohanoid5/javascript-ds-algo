@@ -1,3 +1,20 @@
+const WeightedGraphWithAdjacencyMatrix = require("../../../data-structures/graph/WeightedGraphWithAdjacencyMatrix");
+/**
+ * Solution: Bellman Ford T = O(VE) V = number of Vertex, E = number of Edges
+ * 1. Create an array of distance from source or first node
+ * 2. Mark each node's distance as INT.MAX except for first node which is set to 0
+ * 3. Iterate over V - 1 nodes, except for first
+ * 4. For each node check all adjacent nodes with edges
+ * 5. If adjacent node has distance greater than current node's distance + edge weight between the two node
+ * Update the adjacent node with the current node's distance + edge weight between the two node
+ * 6. Iterate over all edges, if there's an edge between two nodes where destination node's distance is greater than
+ * source node's distance plus edge weight then the graph has negative cycle
+ * 7. Else the graph doesn't have negative edge
+ * Given a Weighted Graph, check whether it has negative edge cycles
+ * @param {WeightedGraphWithAdjacencyMatrix} graph
+ * @returns boolean
+ */
+
 const hasNegativeCycle = function (graph) {
   const { adjacencyMatrix, weights } = graph;
   const edges = [];

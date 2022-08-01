@@ -1,3 +1,21 @@
+const WeightedGraphWithAdjacencyMatrix = require("../../../data-structures/graph/WeightedGraphWithAdjacencyMatrix");
+/**
+ * Solution: Floyd Warshall T = O(V^3) V = number of vertices
+ * 1. Create a V x V array Dist[][]
+ * 2. For each edge between i and j update Dist[i][j] = weight between i and j vertices
+ * 3. For cells i = j update Dist as 0
+ * 4. For rest of the cells update as INT.MAX
+ * 5. Start iterating over all the rows i = 0 to V - 1 and all cols j = 0 to V - 1
+ * 6. Take intermediate vertex k for all k = 0 to V - 1
+ * 7. If there's an intermediate vertex for which Dist[i][k] + Dist[k][j] < Dist[i][j]
+ * 8. Update Dist[i][j] as Dist[i][k] + Dist[k][j]
+ * 9. Lastly, run a loop over all the diagonal elements in Dist
+ * 10. If Dist[i][i] < 0 exists then the graph has negative cycles
+ * Given a Weighted Graph, check whether it has negative edge cycles
+ * @param {WeightedGraphWithAdjacencyMatrix} graph
+ * @returns boolean
+ */
+
 const hasNegativeCycle2 = function (graph) {
   const { adjacencyMatrix, weights } = graph;
   if (adjacencyMatrix.length === 0) return false;
