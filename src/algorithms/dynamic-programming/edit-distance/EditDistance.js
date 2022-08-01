@@ -12,7 +12,7 @@
  * EditDistance(m, n) gives us the result,
  * We can say if str1[m] === str2[m] then EditDistance(m, n) = EditDistance(m - 1, n - 1)
  * Otherwise, it will be minimum of all 3 operations on str1.
- * EditDistance(m, n) = Min[EditDistance(m - 1, n - 1), EditDistance(m, n - 1), EditDistance(m - 1, n)]
+ * EditDistance(m, n) = Min[EditDistance(m - 1, n - 1), EditDistance(m, n - 1), EditDistance(m - 1, n)] + 1
  * 1. Replacement: EditDistance(m - 1, n - 1)
  * 2. Insertion: EditDistance(m, n - 1)
  * 3. Deletion: EditDistance(m - 1, n)
