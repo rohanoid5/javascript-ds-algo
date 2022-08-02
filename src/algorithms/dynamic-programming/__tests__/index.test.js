@@ -25,6 +25,7 @@ const minimumDeletionForPalindrome = require("../minimum-number-deletion-palindr
 const editDistance = require("../edit-distance/EditDistance");
 const isKPalindromic = require("../k-palindrome/CheckStringKPalindrome");
 const minimumSubsetSumDifference = require("../minimum-subset-sum-difference/MinimumSubsetSumDifference");
+const countMinimumSubsetSum = require("../count-subset-sum/CountSubsetSum");
 
 describe("Ugly Numbers", () => {
   it("should return the nth ugly number from the sequence", () => {
@@ -209,5 +210,12 @@ describe("Minimum Subset Sum Difference", () => {
     expect(minimumSubsetSumDifference([1, 2, 3, 9])).toBe(3);
     expect(minimumSubsetSumDifference([1, 2, 7, 1, 5])).toBe(0);
     expect(minimumSubsetSumDifference([1, 3, 100, 4])).toBe(92);
+  });
+});
+
+describe("Count Subset Sum", () => {
+  it("should return count of subsets", () => {
+    expect(countMinimumSubsetSum([1, 1, 2, 3], 4)).toBe(3);
+    expect(countMinimumSubsetSum([1, 2, 7, 1, 5], 9)).toBe(3);
   });
 });
