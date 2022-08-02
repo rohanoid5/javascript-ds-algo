@@ -24,6 +24,7 @@ const largestContiguousSum = require("../largest-contiguous-sum/LargestContiguou
 const minimumDeletionForPalindrome = require("../minimum-number-deletion-palindromic-subsequence/MinimumDeletionPalindrome");
 const editDistance = require("../edit-distance/EditDistance");
 const isKPalindromic = require("../k-palindrome/CheckStringKPalindrome");
+const minimumSubsetSumDifference = require("../minimum-subset-sum-difference/MinimumSubsetSumDifference");
 
 describe("Ugly Numbers", () => {
   it("should return the nth ugly number from the sequence", () => {
@@ -200,5 +201,13 @@ describe("K-Palindromic String", () => {
     expect(isKPalindromic("abcdeca", 2)).toBe(true);
     expect(isKPalindromic("acdcb", 1)).toBe(false);
     expect(isKPalindromic("abcdecba", 1)).toBe(true);
+  });
+});
+
+describe("Minimum Subset Sum Difference", () => {
+  it("should return the minimum difference possible", () => {
+    expect(minimumSubsetSumDifference([1, 2, 3, 9])).toBe(3);
+    expect(minimumSubsetSumDifference([1, 2, 7, 1, 5])).toBe(0);
+    expect(minimumSubsetSumDifference([1, 3, 100, 4])).toBe(92);
   });
 });
