@@ -512,8 +512,6 @@ describe("Binary Search Tree", () => {
       head2.next.next.next.next.next.next = new LinkedListNode(7);
 
       const root2 = sortedListToBalancedBST2(head2);
-      console.log(root2);
-
       expect(root2.value).toBe(4);
       expect(root2.left.value).toBe(2);
       expect(root2.left.left.value).toBe(1);
