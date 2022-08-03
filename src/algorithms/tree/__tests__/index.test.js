@@ -37,6 +37,10 @@ const {
   getBstInPreorder,
   preorderBSTConstruction2,
 } = require("../preorder-bst-construction/PreorderBSTConstruction");
+const {
+  sortedListToBalancedBST1,
+  sortedListToBalancedBST2,
+} = require("../sorted-linked-list-balanced-tree/SortedListToBalancedBST");
 const transformBSTGreaterSum = require("../transformation-bst-greater-sum/TransformBSTGreaterSum");
 const convertTreeToSumTree = require("../tree-to-sum-tree-conversion/TreeToSumTreeConversion");
 
@@ -483,6 +487,39 @@ describe("Binary Search Tree", () => {
       expect(getLowestCommonAncestorBST(root, 10, 14).value).toBe(12);
       expect(getLowestCommonAncestorBST(root, 4, 14).value).toBe(8);
       expect(getLowestCommonAncestorBST(root, 4, 22).value).toBe(20);
+    });
+  });
+
+  describe("Sorted LinkedList to Balanced BST", () => {
+    it("should return a Balanced BST", () => {
+      const head = new LinkedListNode(1);
+      head.next = new LinkedListNode(2);
+      head.next.next = new LinkedListNode(3);
+      head.next.next.next = new LinkedListNode(4);
+
+      const root = sortedListToBalancedBST1(head);
+      expect(root.value).toBe(3);
+      expect(root.left.value).toBe(2);
+      expect(root.left.left.value).toBe(1);
+      expect(root.right.value).toBe(4);
+
+      const head2 = new LinkedListNode(1);
+      head2.next = new LinkedListNode(2);
+      head2.next.next = new LinkedListNode(3);
+      head2.next.next.next = new LinkedListNode(4);
+      head2.next.next.next.next = new LinkedListNode(5);
+      head2.next.next.next.next.next = new LinkedListNode(6);
+      head2.next.next.next.next.next.next = new LinkedListNode(7);
+
+      const root2 = sortedListToBalancedBST2(head2);
+      console.log(root2);
+
+      expect(root2.value).toBe(4);
+      expect(root2.left.value).toBe(2);
+      expect(root2.left.left.value).toBe(1);
+      expect(root2.left.right.value).toBe(3);
+      expect(root2.right.value).toBe(6);
+      expect(root2.right.left.value).toBe(5);
     });
   });
 });
