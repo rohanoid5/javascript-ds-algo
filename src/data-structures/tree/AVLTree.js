@@ -164,6 +164,64 @@ class AVLTree {
 
     return node;
   }
+
+  _removeMin(node) {
+    if (node.left === null) return node.right;
+
+    node.left = this._removeMin(node.left);
+
+    return node;
+  }
+
+  remove(node, value) {
+    if (node === null) return null;
+
+    if (node.value > value) node.left = this.remove(node.left, value);
+    else if (node.value < value) node.right = this.remove(node.right, value);
+    else {
+      if (node.left === null || node.right === null) {
+        node = node.left ? node.left : node.right;
+      } else {
+        let original = node;
+        node = node.right;
+
+        while (node.left) {
+          node = node.left;
+        }
+
+        node.right = this._removeMin(original.right);
+        node.left = original.left;
+      }
+    }
+    if (node === null) return null;
+
+    node.height =
+      Math.max(
+        this.getHeightOfNode(node.left),
+        this.getHeightOfNode(node.right)
+      ) + 1;
+    let balance = this.getBalance(node);
+
+    if (balance > 1 && this.getBalance(node.left) >= 0) {
+      return this.rightRotate(node);
+    }
+
+    if (balance < -1 && this.getBalance(node.right) <= 0) {
+      return this.leftRotate(node);
+    }
+
+    if (balance > 1 && this.getBalance(node.left) < 0) {
+      node.left = this.leftRotate(node.left);
+      return this.rightRotate(node);
+    }
+
+    if (balance < -1 && this.getBalance(node.right) > 0) {
+      node.right = this.rightRotate(node.rightRotate);
+      return this.leftRotate(node);
+    }
+
+    return node;
+  }
 }
 
 module.exports = { AVLTree, AVLNode };

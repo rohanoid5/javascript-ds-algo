@@ -116,4 +116,23 @@ describe("AVL Tree", () => {
       expect(tree.root.right.right.value).toBe(50);
     });
   });
+
+  describe("Deletion", () => {
+    it("should delete a node in the Tree while keeping the Tree Balanced", () => {
+      const tree = new AVLTree();
+      tree.root = tree.insert(tree.root, 10);
+      tree.root = tree.insert(tree.root, 20);
+      tree.root = tree.insert(tree.root, 30);
+      tree.root = tree.insert(tree.root, 40);
+      tree.root = tree.insert(tree.root, 50);
+      tree.root = tree.insert(tree.root, 25);
+
+      tree.root = tree.remove(tree.root, 20);
+      expect(tree.root.value).toBe(30);
+      expect(tree.root.left.value).toBe(25);
+      expect(tree.root.right.value).toBe(40);
+      expect(tree.root.left.left.value).toBe(10);
+      expect(tree.root.right.right.value).toBe(50);
+    });
+  });
 });
