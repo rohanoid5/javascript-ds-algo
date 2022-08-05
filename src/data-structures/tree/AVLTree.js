@@ -165,6 +165,11 @@ class AVLTree {
     return node;
   }
 
+  /**
+   * Deletes Minimum Node in the Tree
+   * @param {AVLNode} node
+   * @returns {AVLNode}
+   */
   _removeMin(node) {
     if (node.left === null) return node.right;
 
@@ -173,6 +178,25 @@ class AVLTree {
     return node;
   }
 
+  /**
+   * First we find out where the node is located, since it's BST we recurse on
+   * either left or right subtree. Finally if we find the node and it has both left and right child,
+   * we find it's inorder successor (left most node in right subtree). We replace that node with the node to be deleted.
+   * otherwise we replace the node with left or right child whichever is non-null.
+   * After that we update the height of the node and check if it is imbalanced.
+   * If it is imbalanced we will take one of the below steps:
+   * 1. The balance is more than 1 and it's left child's balance is greater than equal to 0,
+   * which means the node is Left side heavy and we will do Left Left Rotation.
+   * 2. The balance is less than -1 and it's right child's balance is less than equal to 0,
+   * which means the node is Right side heavy and we will do Right Right Rotation.
+   * 3. The balance is more than 1 and it's left child's balance is less than 0, so we will do Left Right Rotation.
+   * 4. The balance is less than -1 and it's right child's balance is more than 0, so we will do Right Left Rotation.
+   *
+   * Deletes a node if it exists in the Tree and re-balances the changed Tree
+   * @param {AVLNode} node
+   * @param {number} value
+   * @returns {AVLNode}
+   */
   remove(node, value) {
     if (node === null) return null;
 
