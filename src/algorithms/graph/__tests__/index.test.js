@@ -31,6 +31,7 @@ const getMinimumSpanningTree = require("../prims-mst/MinimumSpanningTree");
 
 const { pathTo } = require("../util");
 const findMotherVertex = require("../find-mother-vertex/FindMotherVertex");
+const numberOfIslands = require("../number-of-islands/NumberOfIslands");
 
 describe("Graph", () => {
   describe("Depth First Search", () => {
@@ -707,6 +708,19 @@ describe("Graph", () => {
       graph2.addEdge(1, 2);
       graph2.addEdge(0, 1);
       expect(findMotherVertex(graph2)).toBe(3);
+    });
+  });
+
+  describe("Number of Islands", () => {
+    it("should return the number islands", () => {
+      let islands = [
+        [1, 1, 0, 0, 0],
+        [0, 1, 0, 0, 1],
+        [1, 0, 0, 1, 1],
+        [0, 0, 0, 0, 0],
+        [1, 0, 1, 0, 1],
+      ];
+      expect(numberOfIslands(islands)).toBe(6);
     });
   });
 });
