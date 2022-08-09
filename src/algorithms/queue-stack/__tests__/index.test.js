@@ -1,3 +1,4 @@
+const nextGreaterElement = require("../next-greater-element/NextGreaterElement");
 const {
   QueueUsingStacks1,
   QueueUsingStacks2,
@@ -73,6 +74,14 @@ describe("Stack", () => {
       for (let i = 0; i < arr.length; i++) {
         expect(stack.pop()).toBe(arr[arr.length - 1 - i]);
       }
+    });
+  });
+
+  describe("Next Greater Element", () => {
+    it("should return the next greater element", () => {
+      expect(nextGreaterElement([4, 5, 2, 25])).toEqual([5, 25, 25, -1]);
+      expect(nextGreaterElement([4, 22, 2, 25])).toEqual([22, 25, 25, -1]);
+      expect(nextGreaterElement([11, 13, 21, 3])).toEqual([13, 21, -1, -1]);
     });
   });
 });
