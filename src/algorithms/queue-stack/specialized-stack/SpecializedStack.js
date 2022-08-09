@@ -7,7 +7,6 @@
  * 3. If yes we will push the new element in min storage, otherwise we will push the top of min storage again in min
  * 4. The top of min storage will give us the minimum
  * 5. When we pop we pop from both the normal storage and min storage
- *
  */
 class SpecializedStack {
   constructor(capacity) {
@@ -51,4 +50,51 @@ class SpecializedStack {
   }
 }
 
-module.exports = { SpecializedStack };
+class SpecializedStackWithoutSpace {
+  constructor(capacity) {
+    this.capacity = capacity;
+    this.size = 0;
+    this.storage = [];
+    this.minValue = Number.MIN_SAFE_INTEGER;
+  }
+
+  push(item) {
+    if (this.capacity === this.size) throw new Error("Stack Overflow");
+
+    if (this.storage.length === 0) {
+      this.storage.push(item);
+      this.minValue = item;
+    } else {
+      if (item >= this.minValue) {
+        this.storage.push(item);
+      } else {
+        let newItem = 2 * item - this.minValue;
+        this.minValue = item;
+        this.storage.push(newItem);
+      }
+    }
+    this.size += 1;
+  }
+
+  pop() {
+    if (this.size === 0) throw new Error("Stack is Empty");
+
+    let top = this.storage[this.size - 1];
+    this.size -= 1;
+
+    if (top >= this.minValue) {
+      return this.storage.pop();
+    } else {
+      let temp = this.minValue;
+      this.minValue = 2 * this.minValue - top;
+      this.storage.pop();
+      return temp;
+    }
+  }
+
+  getMin() {
+    return this.minValue;
+  }
+}
+
+module.exports = { SpecializedStack, SpecializedStackWithoutSpace };
