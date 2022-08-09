@@ -28,12 +28,7 @@ const nextGreaterElement = function (arr) {
     }
 
     stack.push([arr[i], count]);
-    nge[i] = count;
-  }
-
-  for (let i = 0; i < arr.length; i++) {
-    if (nge[i] + i >= arr.length) nge[i] = -1;
-    else nge[i] = arr[nge[i] + i];
+    nge[i] = i + count >= arr.length ? -1 : arr[i + count];
   }
 
   return nge;

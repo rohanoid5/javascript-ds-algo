@@ -1,4 +1,5 @@
 const nextGreaterElement = require("../next-greater-element/NextGreaterElement");
+const nextGreaterFrequencyElement = require("../next-greater-frequency-element/NextGreaterFrequencyElement");
 const {
   QueueUsingStacks1,
   QueueUsingStacks2,
@@ -78,10 +79,18 @@ describe("Stack", () => {
   });
 
   describe("Next Greater Element", () => {
-    it("should return the next greater element", () => {
+    it("should return the next greater elements", () => {
       expect(nextGreaterElement([4, 5, 2, 25])).toEqual([5, 25, 25, -1]);
       expect(nextGreaterElement([4, 22, 2, 25])).toEqual([22, 25, 25, -1]);
       expect(nextGreaterElement([11, 13, 21, 3])).toEqual([13, 21, -1, -1]);
+    });
+  });
+
+  describe("Next Greater Frequency Element", () => {
+    it("should return the next greater frequency elements", () => {
+      expect(nextGreaterFrequencyElement([1, 1, 2, 3, 4, 2, 1])).toEqual([
+        -1, -1, 1, 2, 2, 1, -1,
+      ]);
     });
   });
 });
