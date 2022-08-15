@@ -4,6 +4,7 @@ const {
   QueueUsingStacks1,
   QueueUsingStacks2,
 } = require("../queue-using-stack/QueueUsingStack");
+const { SpecializedQueue1 } = require("../specialized-queue/SpecializedQueue");
 const {
   SpecializedStack,
   SpecializedStackWithoutSpace,
@@ -91,6 +92,30 @@ describe("Stack", () => {
       expect(nextGreaterFrequencyElement([1, 1, 2, 3, 4, 2, 1])).toEqual([
         -1, -1, 1, 2, 2, 1, -1,
       ]);
+    });
+  });
+});
+
+describe("Queue", () => {
+  describe("Specialized Queue", () => {
+    it("should return a queue with a method to return minimum value", () => {
+      const queue = new SpecializedQueue1(10);
+
+      let arr = [4, 2, 1, 6, 3, 7];
+      queue.enqueue(arr[0]);
+
+      for (let i = 1; i < arr.length; i++) {
+        queue.enqueue(arr[i]);
+      }
+
+      expect(queue.getMin()).toBe(1);
+      expect(queue.dequeue()).toBe(4);
+      expect(queue.dequeue()).toBe(2);
+      expect(queue.dequeue()).toBe(1);
+      expect(queue.getMin()).toBe(3);
+      expect(queue.dequeue()).toBe(6);
+      expect(queue.dequeue()).toBe(3);
+      expect(queue.getMin()).toBe(7);
     });
   });
 });
