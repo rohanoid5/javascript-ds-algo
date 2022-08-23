@@ -590,14 +590,13 @@ describe("Graph", () => {
 
   describe("Alien Dictionary", () => {
     it("should return sorted dictionary words", () => {
-      expect(printAlienDictionary(["caa", "aaa", "aab"], 3)).toEqual([
-        "c",
-        "a",
-        "b",
-      ]);
+      expect(printAlienDictionary(["caa", "aaa", "aab"])).toEqual("cab");
       expect(
-        printAlienDictionary(["ywx", "wz", "xww", "xz", "zyy", "zwz"], 3)
-      ).toEqual(["y", "w", "x", "z"]);
+        printAlienDictionary(["ywx", "wz", "xww", "xz", "zyy", "zwz"])
+      ).toEqual("ywxz");
+      expect(printAlienDictionary(["wrt", "wrf", "er", "ett", "rftt"])).toEqual(
+        "wertf"
+      );
     });
   });
 

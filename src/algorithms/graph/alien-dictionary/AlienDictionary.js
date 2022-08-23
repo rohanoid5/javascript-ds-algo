@@ -1,6 +1,3 @@
-const WeightedGraphWithAdjacencyMatrix = require("../../../data-structures/graph/WeightedGraphWithAdjacencyMatrix");
-const topologicalSort2 = require("../topological-sort/TopologicalSort2");
-
 /**
  * Given a sorted dictionary of an alien language, find order of characters
  * Input:  words[] = {"baa", "abcd", "abca", "cab", "cad"}
@@ -15,16 +12,25 @@ const topologicalSort2 = require("../topological-sort/TopologicalSort2");
  * 6. Topologically sort the vertices
  *
  * @param {Array} words
- * @param {number} alpha
  * @return {Array}
  */
-const printAlienDictionary = function (words, alpha) {
-  const uniqueWords = new Set(words.join("").split(""));
-  const uniqueWordCount = uniqueWords.size;
-  const graph = new WeightedGraphWithAdjacencyMatrix(uniqueWordCount, true);
-  const converter = Array.from(uniqueWords).sort(
-    (a, b) => a.charCodeAt(0) - b.charCodeAt(0)
-  )[0];
+const printAlienDictionary = function (words) {
+  const uniqueChars = new Set(words.join("").split(""));
+  const uniqueCharsMap = {};
+  const uniqueNodesMap = {};
+  let idx = 0;
+
+  for (let char of Array.from(uniqueChars)) {
+    if (char in uniqueCharsMap) continue;
+
+    uniqueCharsMap[char] = idx;
+    uniqueNodesMap[idx] = char;
+    idx += 1;
+  }
+
+  const graph = new Array(Object.keys(uniqueCharsMap).length)
+    .fill(null)
+    .map(() => new Array(Object.keys(uniqueCharsMap).length).fill(0));
 
   for (let i = 0; i < words.length - 1; i++) {
     let word1 = words[i];
@@ -32,18 +38,55 @@ const printAlienDictionary = function (words, alpha) {
 
     for (let j = 0; j < Math.min(word1.length, word2.length); j++) {
       if (word1[j] !== word2[j]) {
-        graph.addEdge(
-          word1.charCodeAt(j) - converter.charCodeAt(0),
-          word2.charCodeAt(j) - converter.charCodeAt(0)
-        );
+        let u = uniqueCharsMap[word1[j]];
+        let v = uniqueCharsMap[word2[j]];
+        graph[u][v] = 1;
         break;
       }
     }
   }
 
-  return topologicalSort2(graph).map((v) =>
-    String.fromCharCode(v + converter.charCodeAt(0))
-  );
+  const sortedNodes = topologicalSort(graph);
+  let res = "";
+
+  for (let node of sortedNodes) {
+    res += uniqueNodesMap[node];
+  }
+
+  return res;
+};
+
+const topologicalSort = function (graph) {
+  let visited = new Set();
+  let inStack = {};
+  let postOrder = [];
+  let isImpossible = { value: false };
+
+  for (let u = 0; u < graph.length; u++) {
+    if (!visited.has(u)) {
+      dfs(graph, u, visited, inStack, postOrder, isImpossible);
+    }
+  }
+
+  return postOrder.reverse();
+};
+
+const dfs = function (graph, u, visited, inStack, postOrder, isImpossible) {
+  visited.add(u);
+  inStack[u] = true;
+
+  for (let v = 0; v < graph.length; v++) {
+    if (graph[u][v] === 1) {
+      if (!visited.has(v)) {
+        dfs(graph, v, visited, inStack, postOrder, isImpossible);
+      } else if (v in inStack && inStack[v]) {
+        isImpossible.value = false;
+      }
+    }
+  }
+
+  inStack[u] = false;
+  postOrder.push(u);
 };
 
 module.exports = printAlienDictionary;
