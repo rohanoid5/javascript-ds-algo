@@ -36,6 +36,8 @@ const printAlienDictionary = function (words) {
     let word1 = words[i];
     let word2 = words[i + 1];
 
+    if (word1.length > word2.length && word1.startsWith(word2)) return "";
+
     for (let j = 0; j < Math.min(word1.length, word2.length); j++) {
       if (word1[j] !== word2[j]) {
         let u = uniqueCharsMap[word1[j]];
@@ -68,7 +70,7 @@ const topologicalSort = function (graph) {
     }
   }
 
-  return postOrder.reverse();
+  return isImpossible.value ? [] : postOrder.reverse();
 };
 
 const dfs = function (graph, u, visited, inStack, postOrder, isImpossible) {
@@ -80,7 +82,8 @@ const dfs = function (graph, u, visited, inStack, postOrder, isImpossible) {
       if (!visited.has(v)) {
         dfs(graph, v, visited, inStack, postOrder, isImpossible);
       } else if (v in inStack && inStack[v]) {
-        isImpossible.value = false;
+        isImpossible.value = true;
+        return;
       }
     }
   }

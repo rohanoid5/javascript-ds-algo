@@ -597,6 +597,8 @@ describe("Graph", () => {
       expect(printAlienDictionary(["wrt", "wrf", "er", "ett", "rftt"])).toEqual(
         "wertf"
       );
+      expect(printAlienDictionary(["abc", "ab"])).toEqual("");
+      expect(printAlienDictionary(["ab", "abc"])).toEqual("cba");
     });
   });
 
