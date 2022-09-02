@@ -15,26 +15,20 @@
 const LCS2 = function (X, Y) {
   const M = X.length;
   const N = Y.length;
-  let result = 0;
 
-  const lcSuffix = new Array(M + 1)
-    .fill(null)
-    .map((_) => new Array(N + 1).fill(0));
+  const dp = new Array(M + 1).fill(null).map((_) => new Array(N + 1).fill(0));
 
-  for (let i = 0; i < M + 1; i++) {
-    for (let j = 0; j < N + 1; j++) {
-      if (i === 0 || j === 0) {
-        lcSuffix[i][j] = 0;
-      } else if (X[i - 1] === Y[j - 1]) {
-        lcSuffix[i][j] = lcSuffix[i - 1][j - 1] + 1;
-        result = Math.max(result, lcSuffix[i][j]);
+  for (let i = 1; i < M + 1; i++) {
+    for (let j = 1; j < N + 1; j++) {
+      if (X[i - 1] === Y[j - 1]) {
+        dp[i][j] = dp[i - 1][j - 1] + 1;
       } else {
-        lcSuffix[i][j] = 0;
+        dp[i][j] = i > j ? dp[i - 1][j] : dp[i][j - 1];
       }
     }
   }
 
-  return result;
+  return dp[M][N];
 };
 
 module.exports = LCS2;

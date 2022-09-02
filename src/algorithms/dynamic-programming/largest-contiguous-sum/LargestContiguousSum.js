@@ -12,7 +12,7 @@
  */
 const largestContiguousSum = function (arr) {
   let prefixSum = new Array(arr.length).fill(null);
-  prefixSum[0] = 0;
+  prefixSum[0] = arr[0];
   let minPrefixSum = 0;
   let res = 0;
 
