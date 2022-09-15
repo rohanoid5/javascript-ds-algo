@@ -17,12 +17,10 @@ const getKthAncestor = function (node, target, k) {
 const fetchKthAncestor = function (node, target, k, ancestor) {
   if (node === null) return null;
 
-  let temp = null;
-
   if (
     node.value === target ||
-    (temp = fetchKthAncestor(node.left, target, k, ancestor)) !== null ||
-    (temp = fetchKthAncestor(node.right, target, k, ancestor)) !== null
+    fetchKthAncestor(node.left, target, k, ancestor) !== null ||
+    fetchKthAncestor(node.right, target, k, ancestor) !== null
   ) {
     if (k.ancestorCount > 0) k.ancestorCount -= 1;
     else if (k.ancestorCount === 0) {

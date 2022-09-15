@@ -79,7 +79,20 @@ const sum = function (node) {
   return node.value + sum(node.left) + sum(node.right);
 };
 
+const checkSumTree3 = function (root) {
+  let treeSum = getTreeSum(root);
+
+  return treeSum === 2 * root.value;
+};
+
+const getTreeSum = function (node) {
+  if (!node) return 0;
+
+  return node.value + getTreeSum(node.left) + getTreeSum(node.right);
+};
+
 module.exports = {
   checkSumTree1,
   checkSumTree2,
+  checkSumTree3,
 };

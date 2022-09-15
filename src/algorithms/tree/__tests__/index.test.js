@@ -6,6 +6,7 @@ const isCousin = require("../check-cousin/CheckCousin");
 const {
   checkSumTree1,
   checkSumTree2,
+  checkSumTree3,
 } = require("../check-sum-tree/CheckSumTree");
 
 const isBinaryTreeBalanced = require("../check-tree-balance/CheckBinaryTreeBalanced");
@@ -266,6 +267,7 @@ describe("Binary Tree", () => {
 
       expect(checkSumTree1(root)).toBe(true);
       expect(checkSumTree2(root)).toBe(true);
+      expect(checkSumTree3(root)).toBe(true);
     });
   });
 

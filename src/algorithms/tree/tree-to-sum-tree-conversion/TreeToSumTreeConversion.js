@@ -16,15 +16,15 @@ const convertTreeToSumTree = function (tree) {
 };
 
 const convertTreeToSumTreeRec = function (node) {
-  if (node === null) return { value: 0 };
+  if (node === null) return 0;
 
   let left = convertTreeToSumTreeRec(node.left);
   let right = convertTreeToSumTreeRec(node.right);
   let temp = node.value;
 
-  node.value = left.value + right.value;
+  node.value = left + right;
 
-  return { value: temp + node.value };
+  return temp + node.value;
 };
 
 module.exports = convertTreeToSumTree;
