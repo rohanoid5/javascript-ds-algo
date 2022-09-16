@@ -14,15 +14,15 @@ describe("Trie", () => {
     expect(trie.search("bat")).toBe(false);
   });
 
-  xit("should search words inserted in the trie with the words which starts with the argument", () => {
+  it("should search words inserted in the trie with the words which starts with the argument", () => {
     const trie = new Trie();
     trie.insert("apple");
     trie.insert("apps");
-    trie.insert("ba");
+    trie.insert("bac");
 
-    expect(trie.search("app")).toBe(true);
-    expect(trie.search("appxl")).toBe(false);
-    expect(trie.search("bac")).toBe(true);
-    expect(trie.search("bat")).toBe(false);
+    expect(trie.startsWith("app")).toBe(true);
+    expect(trie.startsWith("appxl")).toBe(false);
+    expect(trie.startsWith("ba")).toBe(true);
+    expect(trie.startsWith("bat")).toBe(false);
   });
 });

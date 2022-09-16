@@ -1,19 +1,19 @@
 class TrieNode {
   constructor() {
-    this.node = new Array(26).fill(null);
+    this.node = {};
     this.lastChar = false;
   }
 
   containsKey(char) {
-    return this.node[char.charCodeAt(0) - "a".charCodeAt(0)] !== null;
+    return char in this.node;
   }
 
   putKey(char) {
-    this.node[char.charCodeAt(0) - "a".charCodeAt(0)] = new TrieNode();
+    this.node[char] = new TrieNode();
   }
 
   getKey(char) {
-    return this.node[char.charCodeAt(0) - "a".charCodeAt(0)];
+    return this.node[char];
   }
 
   isEnd() {
